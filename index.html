@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>商业化部-2026周报-W16（0411-0417）</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Microsoft YaHei','PingFang SC',Arial,sans-serif;background:#EBF0F7;color:#1a2340;font-size:13px}
+.page{width:960px;max-width:100%;margin:0 auto;padding:24px 12px 48px}
+
+/* ===== 手机端响应式 ===== */
+@media(max-width:700px){
+  body{font-size:12px}
+  .page{padding:12px 8px 32px}
+
+  /* 标题 */
+  .hdr{padding:12px 14px;flex-wrap:wrap;gap:8px}
+  .hdr h1{font-size:15px}
+  .hdr-badge{padding:5px 12px;font-size:11px}
+
+  /* 进度卡+同比图+三区图：手机端竖排 */
+  div[style*="grid-template-columns:1fr 1.1fr 1.9fr"]{
+    display:flex!important;flex-direction:column!important;gap:10px!important
+  }
+
+  /* 双列变单列 */
+  .row2{grid-template-columns:1fr!important}
+  .row13{grid-template-columns:1fr!important}
+
+  /* 卡片padding缩小 */
+  .card{padding:12px 10px}
+
+  /* SVG图表宽度自适应 */
+  svg{width:100%!important;height:auto!important}
+
+  /* 表格横向滚动 */
+  .card{overflow-x:auto}
+  table.rpt{min-width:480px;font-size:11px}
+  table.rpt th,table.rpt td{padding:5px 6px}
+
+  /* 周进度表格字号 */
+  .tag{font-size:10px;padding:1px 6px}
+
+  /* 签约/执行趋势折线图容器 */
+  .row13 .card:last-child svg{min-width:500px}
+}
+.hdr{background:#1F4E79;border-radius:10px;padding:18px 24px;margin-bottom:18px;display:flex;justify-content:space-between;align-items:center}
+.hdr h1{font-size:21px;font-weight:700;color:#fff}
+.hdr p{font-size:11.5px;color:rgba(255,255,255,.65);margin-top:4px}
+.hdr-badge{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.28);border-radius:8px;padding:7px 18px;color:#fff;text-align:center;font-size:13px;line-height:1.7;flex-shrink:0}
+.sec{font-size:15px;font-weight:700;color:#1F4E79;border-left:5px solid #1F4E79;padding:7px 0 7px 12px;margin:22px 0 12px;background:#fff;border-radius:0 6px 6px 0;box-shadow:0 1px 4px rgba(31,78,121,.09)}
+.sec2{font-size:13px;font-weight:700;color:#2E75B6;margin:14px 0 8px}
+.card{background:#fff;border-radius:10px;padding:16px 18px;box-shadow:0 1px 6px rgba(0,0,0,.07);margin-bottom:12px}
+.ct{font-size:13px;font-weight:700;color:#1e3560;text-align:center;margin-bottom:10px}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
+.row13{display:grid;grid-template-columns:1fr 2fr;gap:12px;margin-bottom:12px}
+.tag{display:inline-block;padding:2px 8px;border-radius:10px;font-size:11px;font-weight:600}
+.tag-over{background:#FCDAD7;color:#B02B1A}
+.tag-under{background:#E2EFDA;color:#1E6B2E}
+.leg{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:8px}
+.leg span{display:flex;align-items:center;gap:4px;font-size:11px;color:#5a6a8a;font-weight:500}
+.sq{width:10px;height:10px;border-radius:2px;display:inline-block;flex-shrink:0}
+.dot-leg{width:10px;height:10px;border-radius:50%;display:inline-block;flex-shrink:0}
+table.rpt{width:100%;border-collapse:collapse;font-size:12px}
+table.rpt th{background:#1F4E79;color:#fff;padding:8px 9px;font-weight:600;font-size:11.5px;text-align:center;white-space:nowrap}
+table.rpt td{padding:7px 9px;border-bottom:.5px solid #eef1f8;text-align:center;vertical-align:middle}
+table.rpt tr:nth-child(even) td{background:#f6f9fd}
+table.rpt tr.total td{background:#1F4E79;color:#fff;font-weight:700}
+table.rpt td.L{text-align:left}
+ul.pts{padding-left:18px;margin:4px 0}
+ul.pts li{margin:6px 0;line-height:1.7;font-size:12.5px}
+ul.pts li ul{margin-top:4px}
+.kw{font-weight:700}
+.up{color:#D94F3D;font-weight:700}.dn{color:#1E8C45;font-weight:700}
+.note{font-size:10.5px;color:#8a9bbf;margin-top:6px;line-height:1.5}
+.pie-leg{font-size:11px;color:#5a6a8a;margin-top:10px}
+.plr{display:flex;justify-content:space-between;align-items:center;padding:2px 0}
+</style>
+</head>
+<body>
+<div class="page">
+
+<div class="hdr">
+  <div>
+    <h1>📋 商业化部 · 2026周报 · W16（0411–0417）</h1>
+    <p>汇报部门：商业化部</p>
+  </div>
+  <div class="hdr-badge">W16<br>2026 第16周</div>
+</div>
+
+<!-- 一、年度业绩 -->
+<div class="sec">一、26年年度业绩情况</div>
+<div class="card" style="margin-bottom:10px">
+  <ul class="pts">
+    <li><span class="kw">【执行】</span>截至4月17日，全年执行净收 <span class="kw">2,352.74万</span>，年度目标完成 <span class="kw">25.57%</span>，二季度目标完成 <span class="kw">14.47%</span>；</li>
+    <li><span class="kw">【签约】</span>截至4月17日，全年签约流水 <span class="kw">2,865.54万</span>，年度目标完成 <span class="kw">31.15%</span>，二季度目标完成 <span class="kw">10.93%</span>。</li>
+  </ul>
+  <p class="note">数据周期为26年1月1日—4月17日；各时间节点目标按照预算目标计算。</p>
+</div>
+
+<div class="card" style="margin-bottom:12px">
+  <table class="rpt">
+    <tr>
+      <th rowspan="2">分类</th>
+      <th colspan="3">2026年</th>
+      <th colspan="3">Q2</th>
+      <th colspan="3">4月</th>
+    </tr>
+    <tr>
+      <th>实际金额</th><th>预算目标</th><th>年-进度</th>
+      <th>实际金额</th><th>预算目标</th><th>季-进度</th>
+      <th>实际金额</th><th>预算目标</th><th>月-进度</th>
+    </tr>
+    <tr>
+      <td class="L"><b>执行净收</b></td>
+      <td>¥23,527,374</td><td>¥92,000,000</td><td><span class="tag tag-under">25.57%</span></td>
+      <td>¥3,302,412</td><td>¥22,825,000</td><td><span class="tag tag-under">14.47%</span></td>
+      <td>¥3,302,412</td><td>¥7,497,500</td><td><span class="tag tag-under">44.05%</span></td>
+    </tr>
+    <tr>
+      <td class="L"><b>签约流水</b></td>
+      <td>¥28,655,400</td><td>¥92,000,000</td><td><span class="tag tag-under">31.15%</span></td>
+      <td>¥2,481,000</td><td>¥22,700,000</td><td><span class="tag tag-under">10.93%</span></td>
+      <td>¥2,481,000</td><td>¥7,435,000</td><td><span class="tag tag-under">33.37%</span></td>
+    </tr>
+  </table>
+</div>
+
+<!-- 执行一行 -->
+<div style="display:grid;grid-template-columns:1fr 1.1fr 1.9fr;gap:12px;margin-bottom:12px">
+  <div class="card" style="display:flex;flex-direction:column;justify-content:space-between;gap:0">
+    <div class="ct" style="margin-bottom:16px">执行进度</div>
+    <div style="display:flex;flex-direction:column;gap:16px">
+      <div>
+        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:4px">
+          <span style="font-size:11px;color:#6a7a9a;font-weight:600">年度进度</span>
+          <span style="font-size:11px;color:#8a9bbf">2,353万 / 9,200万</span>
+        </div>
+        <div style="font-size:19px;font-weight:700;color:#1a2340;line-height:1;margin-bottom:5px">25.57%</div>
+        <div style="background:#e8eef7;border-radius:4px;height:7px;overflow:hidden"><div style="width:25.57%;height:100%;background:#2E75B6;border-radius:4px"></div></div>
+      </div>
+      <div style="border-top:.5px solid #eef1f8"></div>
+      <div>
+        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:4px">
+          <span style="font-size:11px;color:#6a7a9a;font-weight:600">Q2进度</span>
+          <span style="font-size:11px;color:#8a9bbf">330万 / 2,283万</span>
+        </div>
+        <div style="font-size:19px;font-weight:700;color:#1a2340;line-height:1;margin-bottom:5px">14.47%</div>
+        <div style="background:#e8eef7;border-radius:4px;height:7px;overflow:hidden"><div style="width:14.47%;height:100%;background:#2E75B6;border-radius:4px"></div></div>
+      </div>
+      <div style="border-top:.5px solid #eef1f8"></div>
+      <div>
+        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:4px">
+          <span style="font-size:11px;color:#6a7a9a;font-weight:600">4月进度</span>
+          <span style="font-size:11px;color:#8a9bbf">330万 / 750万</span>
+        </div>
+        <div style="font-size:19px;font-weight:700;color:#1a2340;line-height:1;margin-bottom:5px">44.05%</div>
+        <div style="background:#e8eef7;border-radius:4px;height:7px;overflow:hidden"><div style="width:44.05%;height:100%;background:#2E75B6;border-radius:4px"></div></div>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="ct">执行同比（0101–0417）万元</div>
+    <div class="leg"><span><span class="sq" style="background:#2E75B6"></span>26年执行</span><span><span class="sq" style="background:#F07020"></span>25年执行</span></div>
+    <svg id="b1" width="100%" height="170" viewBox="0 0 220 170"></svg>
+  </div>
+  <div class="card">
+    <div class="ct">三区执行同比（0101–0417）万元</div>
+    <div class="leg"><span><span class="sq" style="background:#2E75B6"></span>26年执行</span><span><span class="sq" style="background:#F07020"></span>25年执行</span></div>
+    <svg id="b3" width="100%" height="170" viewBox="0 0 460 170"></svg>
+  </div>
+</div>
+
+<!-- 签约一行 -->
+<div style="display:grid;grid-template-columns:1fr 1.1fr 1.9fr;gap:12px;margin-bottom:12px">
+  <div class="card" style="display:flex;flex-direction:column;justify-content:space-between;gap:0">
+    <div class="ct" style="margin-bottom:16px">签约进度</div>
+    <div style="display:flex;flex-direction:column;gap:16px">
+      <div>
+        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:4px">
+          <span style="font-size:11px;color:#6a7a9a;font-weight:600">年度进度</span>
+          <span style="font-size:11px;color:#8a9bbf">2,866万 / 9,200万</span>
+        </div>
+        <div style="font-size:19px;font-weight:700;color:#1a2340;line-height:1;margin-bottom:5px">31.15%</div>
+        <div style="background:#e8eef7;border-radius:4px;height:7px;overflow:hidden"><div style="width:31.15%;height:100%;background:#2E75B6;border-radius:4px"></div></div>
+      </div>
+      <div style="border-top:.5px solid #eef1f8"></div>
+      <div>
+        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:4px">
+          <span style="font-size:11px;color:#6a7a9a;font-weight:600">Q2进度</span>
+          <span style="font-size:11px;color:#8a9bbf">248万 / 2,270万</span>
+        </div>
+        <div style="font-size:19px;font-weight:700;color:#1a2340;line-height:1;margin-bottom:5px">10.93%</div>
+        <div style="background:#e8eef7;border-radius:4px;height:7px;overflow:hidden"><div style="width:10.93%;height:100%;background:#2E75B6;border-radius:4px"></div></div>
+      </div>
+      <div style="border-top:.5px solid #eef1f8"></div>
+      <div>
+        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:4px">
+          <span style="font-size:11px;color:#6a7a9a;font-weight:600">4月进度</span>
+          <span style="font-size:11px;color:#8a9bbf">248万 / 744万</span>
+        </div>
+        <div style="font-size:19px;font-weight:700;color:#1a2340;line-height:1;margin-bottom:5px">33.37%</div>
+        <div style="background:#e8eef7;border-radius:4px;height:7px;overflow:hidden"><div style="width:33.37%;height:100%;background:#2E75B6;border-radius:4px"></div></div>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="ct">签约同比（0101–0417）万元</div>
+    <div class="leg"><span><span class="sq" style="background:#2E75B6"></span>26年签约</span><span><span class="sq" style="background:#F07020"></span>25年签约</span></div>
+    <svg id="b2" width="100%" height="170" viewBox="0 0 220 170"></svg>
+  </div>
+  <div class="card">
+    <div class="ct">三区签约同比（0101–0417）万元</div>
+    <div class="leg"><span><span class="sq" style="background:#2E75B6"></span>26年签约</span><span><span class="sq" style="background:#F07020"></span>25年签约</span></div>
+    <svg id="b4" width="100%" height="170" viewBox="0 0 460 170"></svg>
+  </div>
+</div>
+
+<!-- 二、本周工作总结 -->
+<div class="sec">二、本周工作总结</div>
+<div class="sec2">1、本周业绩进展</div>
+<div class="card">
+  <ul class="pts">
+    <li><span class="kw">【执行】</span>W16（0411–0417）执行净收 <span class="kw">152.66万元</span>，相较W15（101.59万元）<span class="up">↑ 增加50.28%</span>；截至4月17日，4月目标完成 <span class="kw">44.05%</span>；</li>
+    <li><span class="kw">【签约】</span>W16（0411–0417）签约流水 <span class="kw">68.60万元</span>，相较W15（77.50万元）<span class="dn">↓ 减少11.48%</span>；截至4月17日，4月目标完成 <span class="kw">33.37%</span>。</li>
+  </ul>
+  <p class="note">注：周度目标按照月度预算目标/4计算。</p>
+</div>
+
+<div class="card">
+  <table class="rpt">
+    <tr><th>团队</th><th>实际执行净收</th><th>执行净收目标</th><th>周-进度</th><th>实际签约流水</th><th>签约流水目标</th><th>周-进度</th></tr>
+    <tr><td><b>商业化部</b></td><td>¥1,526,636</td><td>¥1,981,250</td><td><span class="tag tag-under">77.05%</span></td><td>¥686,000</td><td>¥1,945,250</td><td><span class="tag tag-under">35.27%</span></td></tr>
+    <tr><td><b>华北</b></td><td>¥419,893</td><td>¥632,500</td><td><span class="tag tag-under">66.39%</span></td><td>¥60,000</td><td>¥589,000</td><td><span class="tag tag-under">10.19%</span></td></tr>
+    <tr><td><b>华东</b></td><td>¥868,134</td><td>¥965,000</td><td><span class="tag tag-under">89.96%</span></td><td>¥520,000</td><td>¥940,000</td><td><span class="tag tag-under">55.32%</span></td></tr>
+    <tr><td><b>华南</b></td><td>¥238,609</td><td>¥373,750</td><td><span class="tag tag-under">63.84%</span></td><td>¥100,000</td><td>¥391,250</td><td><span class="tag tag-under">25.56%</span></td></tr>
+  </table>
+</div>
+
+<!-- 饼图+趋势 -->
+<div class="row13">
+  <div class="card">
+    <div class="ct">上周区域执行（万元）</div>
+    <svg id="p1" width="100%" height="140" viewBox="0 0 200 140"></svg>
+    <div class="pie-leg">
+      <div class="plr"><span style="display:flex;align-items:center;gap:4px"><span style="width:9px;height:9px;background:#1F4E79;border-radius:1px;display:inline-block"></span>华北</span><b>41.99万</b><span>27.5%</span></div>
+      <div class="plr"><span style="display:flex;align-items:center;gap:4px"><span style="width:9px;height:9px;background:#2E75B6;border-radius:1px;display:inline-block"></span>华东</span><b>86.81万</b><span>56.9%</span></div>
+      <div class="plr"><span style="display:flex;align-items:center;gap:4px"><span style="width:9px;height:9px;background:#9DC3E6;border-radius:1px;display:inline-block"></span>华南</span><b>23.86万</b><span>15.6%</span></div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="ct">周执行趋势图（万元）</div>
+    <svg id="t1" width="100%" height="200" viewBox="0 0 580 200"></svg>
+  </div>
+</div>
+<div class="row13">
+  <div class="card">
+    <div class="ct">上周区域签约（万元）</div>
+    <svg id="p2" width="100%" height="140" viewBox="0 0 200 140"></svg>
+    <div class="pie-leg">
+      <div class="plr"><span style="display:flex;align-items:center;gap:4px"><span style="width:9px;height:9px;background:#1F4E79;border-radius:1px;display:inline-block"></span>华北</span><b>6.00万</b><span>8.7%</span></div>
+      <div class="plr"><span style="display:flex;align-items:center;gap:4px"><span style="width:9px;height:9px;background:#2E75B6;border-radius:1px;display:inline-block"></span>华东</span><b>52.00万</b><span>75.8%</span></div>
+      <div class="plr"><span style="display:flex;align-items:center;gap:4px"><span style="width:9px;height:9px;background:#9DC3E6;border-radius:1px;display:inline-block"></span>华南</span><b>10.00万</b><span>14.6%</span></div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="ct">周签约趋势图（万元）</div>
+    <svg id="t2" width="100%" height="200" viewBox="0 0 580 200"></svg>
+  </div>
+</div>
+
+<!-- 本周重点 -->
+<div class="sec2">2、本周重点内容</div>
+<div class="card">
+  <div class="sec2" style="margin-top:0">① 本周签约：68.60万元</div>
+  <table class="rpt">
+    <tr><th class="L">项目</th><th>区域·行业</th><th>金额（万）</th><th>销售</th><th>备注</th></tr>
+    <tr><td class="L">华勤技术-26年合作</td><td>华东·上市</td><td>25.00</td><td>丁晓霞</td><td>新客</td></tr>
+    <tr><td class="L">易方达基金-26年合作</td><td>华东·金融</td><td>15.00</td><td>杨帆</td><td></td></tr>
+    <tr><td class="L">涂鸦智能-26年合作</td><td>华东·上市</td><td>12.00</td><td>王敏</td><td></td></tr>
+    <tr><td class="L">广发基金-26年合作</td><td>华南·金融</td><td>10.00</td><td>朱诗榆</td><td></td></tr>
+    <tr><td class="L">阿里巴巴-26年合作</td><td>华北·上市</td><td>6.00</td><td>宋一平</td><td></td></tr>
+    <tr><td class="L">洋河-26年合作</td><td>综合</td><td>0.60</td><td>综合</td><td></td></tr>
+    <tr class="total"><td colspan="2">合计</td><td>68.60</td><td colspan="2"></td></tr>
+  </table>
+</div>
+
+<div class="card">
+  <div class="sec2" style="margin-top:0">② 本周执行重点</div>
+  <ul class="pts" style="margin-bottom:14px">
+    <li>本周共计执行 <span class="kw">152.66万元</span>；其中<span class="kw">金融执行122.57万元</span>，主要来自国泰基金（创业板新能源ETF、半导体设备ETF、黄金股ETF持营）、工银瑞信基金（科创创业人工智能ETF、港股通科技30ETF持营）、华宝基金（股票私域产品植入）、易方达基金（储能电池ETF、创业板ETF持营）等；<span class="kw">上市执行30.09万元</span>，主要来自阿里巴巴日常传播、岚图汽车财报及调研团、珀莱雅日常传播等。</li>
+  </ul>
+  <div class="row2" style="margin-bottom:0">
+    <table class="rpt" style="table-layout:fixed">
+      <colgroup><col style="width:44px"><col style="width:90px"><col style="width:90px"><col></colgroup>
+      <tr><th colspan="4" style="height:44px;vertical-align:middle">金融行业 周执行TOP5客户</th></tr>
+      <tr><th>排序</th><th>客户</th><th>执行金额（元）</th><th class="L">主要执行内容</th></tr>
+      <tr style="height:48px"><td>1</td><td>国泰基金</td><td>248,200</td><td class="L">创业板新能源ETF、半导体设备ETF、黄金股ETF持营</td></tr>
+      <tr style="height:48px"><td>2</td><td>工银瑞信基金</td><td>173,200</td><td class="L">科创创业人工智能ETF、港股通科技30ETF持营</td></tr>
+      <tr style="height:48px"><td>3</td><td>华宝基金</td><td>157,200</td><td class="L">股票私域产品植入</td></tr>
+      <tr style="height:48px"><td>4</td><td>易方达基金</td><td>94,300</td><td class="L">储能电池ETF、创业板ETF持营</td></tr>
+      <tr style="height:48px"><td>5</td><td>万家基金</td><td>94,300</td><td class="L">工业有色ETF持营</td></tr>
+    </table>
+    <table class="rpt" style="table-layout:fixed">
+      <colgroup><col style="width:44px"><col style="width:90px"><col style="width:90px"><col></colgroup>
+      <tr><th colspan="4" style="height:44px;vertical-align:middle">上市行业 周执行TOP5客户</th></tr>
+      <tr><th>排序</th><th>客户</th><th>执行金额（元）</th><th class="L">主要执行内容</th></tr>
+      <tr style="height:48px"><td>1</td><td>阿里巴巴</td><td>56,600</td><td class="L">日常传播</td></tr>
+      <tr style="height:48px"><td>2</td><td>岚图汽车</td><td>50,400</td><td class="L">财报传播、调研团</td></tr>
+      <tr style="height:48px"><td>3</td><td>珀莱雅</td><td>32,400</td><td class="L">日常传播</td></tr>
+      <tr style="height:48px"><td>4</td><td>顺丰同城</td><td>23,800</td><td class="L">财报传播</td></tr>
+      <tr style="height:48px"><td>5</td><td>贝壳</td><td>15,100</td><td class="L">财报传播</td></tr>
+    </table>
+  </div>
+</div>
+
+<div class="card">
+  <div class="sec2" style="margin-top:0">③ 回款情况</div>
+  <ul class="pts"><li>截至4月17日，2026年累计回款 <span class="kw">1,150万元</span>，相较25年同期 <span class="dn">减少46%</span>。</li></ul>
+</div>
+
+<div class="card">
+  <div class="sec2" style="margin-top:0">④ 销售运营相关</div>
+  <ul class="pts" style="margin-bottom:14px">
+    <li>W16三区分行业销售拜访次数及执行净收情况：
+      <ul>
+        <li>金融：人均拜访 <span class="kw">4.2次</span>，人均净收 <span class="kw">17.51万</span>；<span class="kw">赵文婧、朱诗榆、王乾炜</span>本周执行净收低于行业平均水平</li>
+        <li>上市：人均拜访 <span class="kw">3.7次</span>，人均净收 <span class="kw">5.02万</span>；<span class="kw">李坤阳、丁晓霞、王敏、陈琳璐</span>本周执行净收低于行业平均水平</li>
+      </ul>
+    </li>
+    <li>本周新建联客户情况（CRM）：本周新增建联 <span class="kw">5家</span>——融捷（华南·上市·陈琳璐）、艾博生物（华东·上市·丁晓霞）、软通动力（华北·上市·李坤阳）、苏能股份（华东·上市·丁晓霞）、力劲（华南·上市·陈琳璐）</li>
+  </ul>
+  <div class="row2" style="margin-bottom:0">
+    <div>
+      <div class="ct">金融销售周执行&拜访</div>
+      <div class="leg"><span><span class="sq" style="background:#2E75B6"></span>执行净收（万）</span><span><span class="dot-leg" style="background:#E05040"></span>拜访量（次）</span></div>
+      <svg id="s1" width="100%" height="200" viewBox="0 0 440 200"></svg>
+    </div>
+    <div>
+      <div class="ct">上市销售周执行&拜访</div>
+      <div class="leg"><span><span class="sq" style="background:#2E75B6"></span>执行净收（万）</span><span><span class="dot-leg" style="background:#E05040"></span>拜访量（次）</span></div>
+      <svg id="s2" width="100%" height="200" viewBox="0 0 440 200"></svg>
+    </div>
+  </div>
+</div>
+
+<!-- 三、下周工作计划 -->
+<div class="sec">三、下周工作计划</div>
+<div class="sec2">1、客户拜访计划</div>
+<div class="card">
+  <table class="rpt">
+    <tr><th>区域</th><th>行业</th><th>销售</th><th>计划拜访数</th><th class="L">计划拜访客户名单</th></tr>
+    <tr style="background:#EBF3FB"><td rowspan="4" style="font-weight:700;background:#D6E8F7">华北<br>19访</td><td>金融</td><td>朱晓燕</td><td>5</td><td class="L">嘉实基金、邮储银行、工银瑞信、华商基金、东方基金</td></tr>
+    <tr style="background:#EBF3FB"><td>金融</td><td>王乾炜</td><td>4</td><td class="L">华夏基金（市场、互金）、中金基金、长盛基金</td></tr>
+    <tr style="background:#EBF3FB"><td>上市</td><td>宋一平</td><td>5</td><td class="L">伊利、百度、百济神州、艾美疫苗、京东</td></tr>
+    <tr style="background:#EBF3FB"><td>上市</td><td>李坤阳</td><td>5</td><td class="L">小马智行、地平线、理想汽车、纳斯达克、爱奇艺</td></tr>
+    <tr><td rowspan="5" style="font-weight:700;background:#F2F7FC">华东<br>23访</td><td>金融</td><td>李波</td><td>5</td><td class="L">华宝基金、富国基金、华泰柏瑞、西部利得基金、兴业银行</td></tr>
+    <tr><td>金融</td><td>杨帆</td><td>5</td><td class="L">汇添富基金、中银基金、易方达、永赢基金、摩根基金</td></tr>
+    <tr><td>金融</td><td>刘炫</td><td>3</td><td class="L">国泰基金、招商基金、华安基金</td></tr>
+    <tr><td>上市</td><td>王敏</td><td>5</td><td class="L">维昇药业、太美医疗、涂鸦、农夫山泉、协鑫能科</td></tr>
+    <tr><td>上市</td><td>丁晓霞</td><td>5</td><td class="L">博威合金、太平鸟、宁波银行、韵达股份、宁德时代</td></tr>
+    <tr style="background:#EBF5EE"><td rowspan="4" style="font-weight:700;background:#D6EDDF">华南<br>20访</td><td>金融</td><td>朱诗榆</td><td>5</td><td class="L">广发基金（券商、电商）、鹏华基金、平安基金、国金证券（代付）</td></tr>
+    <tr style="background:#EBF5EE"><td>金融</td><td>赵文婧</td><td>5</td><td class="L">南方基金（券商、品牌）、长城基金、大成基金、景顺长城基金</td></tr>
+    <tr style="background:#EBF5EE"><td>上市</td><td>周逸婷</td><td>5</td><td class="L">文远知行、健合集团、汤臣倍健、万益蓝、华润置地</td></tr>
+    <tr style="background:#EBF5EE"><td>上市</td><td>陈琳璐</td><td>5</td><td class="L">云天励飞、光峰、广联科技、欧菲光、瑞和数智</td></tr>
+  </table>
+</div>
+
+<div class="sec2">2、预估执行净收：135万</div>
+<div class="card">
+  <table class="rpt">
+    <tr><th>区域</th><th>行业</th><th>销售</th><th>预计执行净收</th><th class="L">预计执行明细</th></tr>
+    <tr><td rowspan="4" style="background:#EBF3FB;font-weight:700">华北<br>31.5万</td><td>金融</td><td>朱晓燕</td><td>¥200,000</td><td class="L">工银瑞信科创创业人工智能ETF产品持营，嘉实基金《港股通创新药ETF 财富刮刮卡》，南方基金重点场外产品持营</td></tr>
+    <tr><td>金融</td><td>王乾炜</td><td>¥45,000</td><td class="L">华夏基金持营</td></tr>
+    <tr><td>上市</td><td>李坤阳</td><td>¥40,000</td><td class="L">爱奇艺等日常资讯传播</td></tr>
+    <tr><td>上市</td><td>宋一平</td><td>¥30,000</td><td class="L">飞鹤资讯推送等</td></tr>
+    <tr><td rowspan="5" style="font-weight:700">华东<br>77万</td><td>金融</td><td>李波</td><td>¥120,000</td><td class="L">富国基金10万、华宝基金2万</td></tr>
+    <tr><td>金融</td><td>杨帆</td><td>¥150,000</td><td class="L">易方达15万</td></tr>
+    <tr><td>金融</td><td>刘炫</td><td>¥100,000</td><td class="L">国泰基金10万</td></tr>
+    <tr><td>上市</td><td>王敏</td><td>¥150,000</td><td class="L">涂鸦12万、农夫山泉3万</td></tr>
+    <tr><td>上市</td><td>丁晓霞</td><td>¥250,000</td><td class="L">山西汾酒15万、珀莱雅5万、希迪智驾5万</td></tr>
+    <tr><td rowspan="4" style="background:#EBF5EE;font-weight:700">华南<br>27万</td><td>金融</td><td>朱诗榆</td><td>¥42,000</td><td class="L">广发基金持营</td></tr>
+    <tr><td>金融</td><td>赵文婧</td><td>¥170,000</td><td class="L">南方基金新能源ETF持营</td></tr>
+    <tr><td>上市</td><td>周逸婷</td><td>¥15,000</td><td class="L">日常传播</td></tr>
+    <tr><td>上市</td><td>陈琳璐</td><td>¥50,000</td><td class="L">歌尔财报</td></tr>
+    <tr class="total"><td colspan="3">预估下周执行净收总计</td><td>¥1,352,000</td><td class="L"></td></tr>
+  </table>
+</div>
+
+<div class="sec2">3、预估签约流水：102万</div>
+<div class="card">
+  <table class="rpt">
+    <tr><th>区域</th><th>行业</th><th>销售</th><th>预计签约流水</th><th class="L">预计签约明细</th></tr>
+    <tr><td rowspan="4" style="background:#EBF3FB;font-weight:700">华北<br>45万</td><td>金融</td><td>朱晓燕</td><td>¥150,000</td><td class="L">北京银行品牌发布</td></tr>
+    <tr><td>金融</td><td>王乾炜</td><td>¥0</td><td class="L">暂无</td></tr>
+    <tr><td>上市</td><td>李坤阳</td><td>¥300,000</td><td class="L">润泽科技年框</td></tr>
+    <tr><td>上市</td><td>宋一平</td><td>¥0</td><td class="L">暂无</td></tr>
+    <tr><td rowspan="5" style="font-weight:700">华东<br>32万</td><td>金融</td><td>李波</td><td>¥0</td><td class="L">—</td></tr>
+    <tr><td>金融</td><td>杨帆</td><td>¥0</td><td class="L">—</td></tr>
+    <tr><td>金融</td><td>刘炫</td><td>¥0</td><td class="L">—</td></tr>
+    <tr><td>上市</td><td>王敏</td><td>¥120,000</td><td class="L">光明乳业12万</td></tr>
+    <tr><td>上市</td><td>丁晓霞</td><td>¥200,000</td><td class="L">鱼跃医疗20万</td></tr>
+    <tr><td rowspan="4" style="background:#EBF5EE;font-weight:700">华南<br>25万</td><td>金融</td><td>朱诗榆</td><td>¥150,000</td><td class="L">广发基金持营</td></tr>
+    <tr><td>金融</td><td>赵文婧</td><td>¥0</td><td class="L">暂无</td></tr>
+    <tr><td>上市</td><td>周逸婷</td><td>¥0</td><td class="L">暂无</td></tr>
+    <tr><td>上市</td><td>陈琳璐</td><td>¥100,000</td><td class="L">力劲</td></tr>
+    <tr class="total"><td colspan="3">预估下周签约流水总计</td><td>¥1,020,000</td><td class="L"></td></tr>
+  </table>
+</div>
+
+</div>
+<script>
+function el(tag,attrs){const e=document.createElementNS('http://www.w3.org/2000/svg',tag);for(const[k,v]of Object.entries(attrs))e.setAttribute(k,v);return e}
+function tx(svg,x,y,s,o={}){const t=el('text',{x,y,'text-anchor':o.a||'middle','font-size':o.fs||10,'fill':o.c||'#5a6a8a','font-weight':o.b?'700':'400','font-family':'Microsoft YaHei,Arial,sans-serif'});t.textContent=s;svg.appendChild(t);return t}
+
+function barChart(id,labels,d26,d25,chgs,maxV,vw,vh){
+  const svg=document.getElementById(id);
+  const PL=8,PR=8,PT=52,PB=24,W=vw-PL-PR,H=vh-PT-PB;
+  const n=labels.length,gw=W/n,bw=gw*0.3,gap=gw*0.04;
+  [0,.25,.5,.75,1].forEach(f=>{const y=PT+H-f*H;svg.appendChild(el('line',{x1:PL,y1:y,x2:PL+W,y2:y,stroke:'#eaeff7','stroke-width':'0.6'}))});
+  labels.forEach((lbl,i)=>{
+    const gx=PL+i*gw+gw/2;
+    const h25=Math.max(d25[i]/maxV*H,1),y25=PT+H-h25;
+    svg.appendChild(el('rect',{x:gx-bw-gap/2,y:y25,width:bw,height:h25,fill:'#F07020',rx:'2'}));
+    tx(svg,gx-bw/2-gap/2,y25-4,d25[i]+'万',{fs:10,c:'#c05010'});
+    const h26=Math.max(d26[i]/maxV*H,1),y26=PT+H-h26;
+    svg.appendChild(el('rect',{x:gx+gap/2,y:y26,width:bw,height:h26,fill:'#2E75B6',rx:'2'}));
+    tx(svg,gx+bw/2+gap/2,y26-5,d26[i]+'万',{fs:10,c:'#2E75B6',b:true});
+    const chg=chgs[i],cc=chg>=0?'#D94F3D':'#1E8C45',ct=(chg>=0?'↑+':'↓')+Math.abs(chg).toFixed(1)+'%';
+    tx(svg,gx+bw/2+gap/2,Math.min(y26-18,PT-2),ct,{fs:9.5,c:cc,b:true});
+    tx(svg,gx,PT+H+16,lbl,{fs:10,c:'#5a6a8a'});
+  });
+}
+
+function pie(id,vals,cols,vw,vh){
+  const svg=document.getElementById(id);
+  const cx=vw/2,cy=vh/2,r=Math.min(vw,vh)/2-8,tot=vals.reduce((a,b)=>a+b,0);
+  let ang=-Math.PI/2;
+  vals.forEach((v,i)=>{
+    const sw=v/tot*2*Math.PI,x1=cx+r*Math.cos(ang),y1=cy+r*Math.sin(ang),x2=cx+r*Math.cos(ang+sw),y2=cy+r*Math.sin(ang+sw);
+    svg.appendChild(el('path',{d:`M${cx},${cy}L${x1},${y1}A${r},${r} 0 ${sw>Math.PI?1:0},1 ${x2},${y2}Z`,fill:cols[i],stroke:'#fff','stroke-width':'1.5'}));
+    const ma=ang+sw/2,lx=cx+r*0.62*Math.cos(ma),ly=cy+r*0.62*Math.sin(ma);
+    tx(svg,lx,ly+4,(v/tot*100).toFixed(1)+'%',{fs:11,c:'#fff',b:true});
+    ang+=sw;
+  });
+}
+
+function lineChart(id,data,col,labels,vw,vh){
+  const svg=document.getElementById(id);
+  const PL=8,PR=8,PT=22,PB=22,W=vw-PL-PR,H=vh-PT-PB;
+  const maxV=Math.max(...data)*1.18||10,n=data.length;
+  [0,.25,.5,.75,1].forEach(f=>{const y=PT+H-f*H;svg.appendChild(el('line',{x1:PL,y1:y,x2:PL+W,y2:y,stroke:'#eaeff7','stroke-width':'0.6'}))});
+  const pts=data.map((v,i)=>[PL+i*(W/(n-1)),PT+H-v/maxV*H]);
+  const fd=`M${pts[0][0]},${pts[0][1]}`+pts.slice(1).map(p=>`L${p[0]},${p[1]}`).join('')+`L${pts[n-1][0]},${PT+H}L${pts[0][0]},${PT+H}Z`;
+  svg.appendChild(el('path',{d:fd,fill:col+'22',stroke:'none'}));
+  svg.appendChild(el('path',{d:'M'+pts.map(p=>p[0]+','+p[1]).join('L'),fill:'none',stroke:col,'stroke-width':'2.2','stroke-linejoin':'round','stroke-linecap':'round'}));
+  pts.forEach(([x,y],i)=>{
+    svg.appendChild(el('circle',{cx:x,cy:y,r:'3.5',fill:col,stroke:'#fff','stroke-width':'1.5'}));
+    tx(svg,x,y-8,data[i]+'万',{fs:9.5,c:'#5a6a8a',b:true});
+    tx(svg,x,PT+H+15,labels[i],{fs:9.5,c:'#6a7a9a'});
+  });
+}
+
+function dual(id,labels,exec,visits,vw,vh){
+  const svg=document.getElementById(id);
+  const PL=8,PR=34,PT=24,PB=22,W=vw-PL-PR,H=vh-PT-PB;
+  const n=labels.length,bw=W/n*0.48,maxE=Math.max(...exec)*1.28||1,maxV=Math.max(...visits)+2;
+  [0,.25,.5,.75,1].forEach(f=>{const y=PT+H-f*H;svg.appendChild(el('line',{x1:PL,y1:y,x2:PL+W,y2:y,stroke:'#eaeff7','stroke-width':'0.6'}))});
+  labels.forEach((lbl,i)=>{
+    const cx=PL+(i+0.5)*(W/n),h=Math.max(exec[i]/maxE*H,1);
+    svg.appendChild(el('rect',{x:cx-bw/2,y:PT+H-h,width:bw,height:h,fill:'#2E75B6',rx:'3'}));
+    tx(svg,cx,PT+H-h-5,exec[i].toFixed(1)+'万',{fs:10,c:'#2E75B6',b:true});
+    tx(svg,cx,PT+H+15,lbl,{fs:10,c:'#5a6a8a'});
+  });
+  const vpts=labels.map((_,i)=>[PL+(i+0.5)*(W/n),PT+H-visits[i]/maxV*H]);
+  svg.appendChild(el('path',{d:'M'+vpts.map(p=>p[0]+','+p[1]).join('L'),fill:'none',stroke:'#E05040','stroke-width':'2.2','stroke-linejoin':'round'}));
+  vpts.forEach(([x,y],i)=>{
+    svg.appendChild(el('circle',{cx:x,cy:y,r:'4.5',fill:'#E05040',stroke:'#fff','stroke-width':'2'}));
+    tx(svg,x,y-8,visits[i]+'次',{fs:10,c:'#E05040',b:true});
+  });
+  tx(svg,vw-2,PT,'次',{a:'end',fs:9,c:'#E05040'});
+}
+
+const PIES=['#1F4E79','#2E75B6','#9DC3E6'];
+const WKS=['W1','W2','W3','W4','W5','W6','W7','W8','W9','W10','W11','W12','W13','W14','W15','W16'];
+
+barChart('b1',['商业化部','金融','上市'],[2353,1543,800],[2289,1562,716],[2.8,-1.2,11.8],2900,220,170);
+barChart('b2',['商业化部','金融','上市'],[2866,1578,1277],[4063,2611,1445],[-29.5,-39.6,-11.6],4500,220,170);
+barChart('b3',['华北·金融','华北·上市','华东·金融','华东·上市','华南·金融','华南·上市'],
+  [375,301,1051,128,118,371],[548,261,878,171,136,283],[-31.6,15.2,19.7,-25.2,-13.5,31.0],1300,460,170);
+barChart('b4',['华北·金融','华北·上市','华东·金融','华东·上市','华南·金融','华南·上市'],
+  [764,462,752,209,62,606],[910,651,1558,222,143,572],[-16.1,-29.1,-51.7,-5.7,-56.6,6.1],1800,460,170);
+
+pie('p1',[41.99,86.81,23.86],PIES,200,140);
+pie('p2',[6.0,52.0,10.0],PIES,200,140);
+
+lineChart('t1',[9,191,158,154,227,135,80,29,90,198,119,196,322,189,102,153],'#2E75B6',WKS,580,200);
+lineChart('t2',[0,230,304,103,602,53,66,45,75,254,337,154,234,245,78,69],'#E8813A',WKS,580,200);
+
+// 金融按执行从大到小：刘炫31.50/4 李波31.06/4 朱晓燕30.99/4 杨帆18.87/3 赵文婧6.11/5 朱诗榆4.04/5 王乾炜0/0
+dual('s1',['刘炫','李波','朱晓燕','杨帆','赵文婧','朱诗榆','王乾炜'],
+  [31.50,31.06,30.99,18.87,6.11,4.04,0],[4,4,4,3,5,5,0],440,200);
+// 上市按执行从大到小：宋一平10.36/5 周逸婷8.84/2 李坤阳4.88/3 丁晓霞3.73/5 王敏1.66/2 陈琳璐0.63/5
+dual('s2',['宋一平','周逸婷','李坤阳','丁晓霞','王敏','陈琳璐'],
+  [10.36,8.84,4.88,3.73,1.66,0.63],[5,2,3,5,2,5],440,200);
+</script>
+</body>
+</html>
