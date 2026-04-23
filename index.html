@@ -1,509 +1,1355 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="zh-CN">
 <head>
-<meta charset="UTF-8">
-<title>商业化部-2026周报-W16（0411-0417）</title>
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>雪球上市公司传播方案 Skill · 使用说明书</title>
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Microsoft YaHei','PingFang SC',Arial,sans-serif;background:#EBF0F7;color:#1a2340;font-size:13px}
-.page{width:960px;max-width:100%;margin:0 auto;padding:24px 12px 48px}
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
 
-/* ===== 手机端响应式 ===== */
-@media(max-width:700px){
-  body{font-size:12px}
-  .page{padding:12px 8px 32px}
-
-  /* 标题 */
-  .hdr{padding:12px 14px;flex-wrap:wrap;gap:8px}
-  .hdr h1{font-size:15px}
-  .hdr-badge{padding:5px 12px;font-size:11px}
-
-  /* 进度卡+同比图+三区图：手机端竖排 */
-  div[style*="grid-template-columns:1fr 1.1fr 1.9fr"]{
-    display:flex!important;flex-direction:column!important;gap:10px!important
-  }
-
-  /* 双列变单列 */
-  .row2{grid-template-columns:1fr!important}
-  .row13{grid-template-columns:1fr!important}
-
-  /* 卡片padding缩小 */
-  .card{padding:12px 10px}
-
-  /* SVG图表宽度自适应 */
-  svg{width:100%!important;height:auto!important}
-
-  /* 表格横向滚动 */
-  .card{overflow-x:auto}
-  table.rpt{min-width:480px;font-size:11px}
-  table.rpt th,table.rpt td{padding:5px 6px}
-
-  /* 周进度表格字号 */
-  .tag{font-size:10px;padding:1px 6px}
-
-  /* 签约/执行趋势折线图容器 */
-  .row13 .card:last-child svg{min-width:500px}
+:root {
+  --xq-primary:   #1E7FFF;
+  --xq-primary-d: #0B4FAE;
+  --xq-primary-l: #6FA9FF;
+  --xq-accent:    #FFC93C;
+  --xq-ink:       #0E1726;
+  --xq-bg:        #F4F9FF;
+  --xq-grey:      #E9EEF5;
+  --xq-red:       #E5362B;
+  --xq-mute:      #8A8F99;
+  --xq-card:      #FFFFFF;
+  --radius:       16px;
+  --shadow:       0 4px 24px rgba(14,23,38,0.08);
+  --shadow-lg:    0 12px 48px rgba(14,23,38,0.12);
 }
-.hdr{background:#1F4E79;border-radius:10px;padding:18px 24px;margin-bottom:18px;display:flex;justify-content:space-between;align-items:center}
-.hdr h1{font-size:21px;font-weight:700;color:#fff}
-.hdr p{font-size:11.5px;color:rgba(255,255,255,.65);margin-top:4px}
-.hdr-badge{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.28);border-radius:8px;padding:7px 18px;color:#fff;text-align:center;font-size:13px;line-height:1.7;flex-shrink:0}
-.sec{font-size:15px;font-weight:700;color:#1F4E79;border-left:5px solid #1F4E79;padding:7px 0 7px 12px;margin:22px 0 12px;background:#fff;border-radius:0 6px 6px 0;box-shadow:0 1px 4px rgba(31,78,121,.09)}
-.sec2{font-size:13px;font-weight:700;color:#2E75B6;margin:14px 0 8px}
-.card{background:#fff;border-radius:10px;padding:16px 18px;box-shadow:0 1px 6px rgba(0,0,0,.07);margin-bottom:12px}
-.ct{font-size:13px;font-weight:700;color:#1e3560;text-align:center;margin-bottom:10px}
-.row2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
-.row13{display:grid;grid-template-columns:1fr 2fr;gap:12px;margin-bottom:12px}
-.tag{display:inline-block;padding:2px 8px;border-radius:10px;font-size:11px;font-weight:600}
-.tag-over{background:#FCDAD7;color:#B02B1A}
-.tag-under{background:#E2EFDA;color:#1E6B2E}
-.leg{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:8px}
-.leg span{display:flex;align-items:center;gap:4px;font-size:11px;color:#5a6a8a;font-weight:500}
-.sq{width:10px;height:10px;border-radius:2px;display:inline-block;flex-shrink:0}
-.dot-leg{width:10px;height:10px;border-radius:50%;display:inline-block;flex-shrink:0}
-table.rpt{width:100%;border-collapse:collapse;font-size:12px}
-table.rpt th{background:#1F4E79;color:#fff;padding:8px 9px;font-weight:600;font-size:11.5px;text-align:center;white-space:nowrap}
-table.rpt td{padding:7px 9px;border-bottom:.5px solid #eef1f8;text-align:center;vertical-align:middle}
-table.rpt tr:nth-child(even) td{background:#f6f9fd}
-table.rpt tr.total td{background:#1F4E79;color:#fff;font-weight:700}
-table.rpt td.L{text-align:left}
-ul.pts{padding-left:18px;margin:4px 0}
-ul.pts li{margin:6px 0;line-height:1.7;font-size:12.5px}
-ul.pts li ul{margin-top:4px}
-.kw{font-weight:700}
-.up{color:#D94F3D;font-weight:700}.dn{color:#1E8C45;font-weight:700}
-.note{font-size:10.5px;color:#8a9bbf;margin-top:6px;line-height:1.5}
-.pie-leg{font-size:11px;color:#5a6a8a;margin-top:10px}
-.plr{display:flex;justify-content:space-between;align-items:center;padding:2px 0}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  font-family: 'Noto Sans SC', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--xq-ink);
+  background: #F0F4F8;
+  scroll-behavior: smooth;
+}
+
+/* ========== HERO ========== */
+.hero {
+  background: linear-gradient(135deg, var(--xq-primary-d) 0%, var(--xq-primary) 50%, var(--xq-primary-l) 100%);
+  color: #fff;
+  padding: 80px 24px 64px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  right: -120px;
+  top: -120px;
+  width: 480px;
+  height: 480px;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--xq-accent), transparent 65%);
+  opacity: 0.22;
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  left: -80px;
+  bottom: -80px;
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,255,255,0.15), transparent 60%);
+}
+.hero .badge {
+  display: inline-block;
+  background: rgba(255,255,255,0.18);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.25);
+  padding: 6px 20px;
+  border-radius: 24px;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  margin-bottom: 24px;
+}
+.hero h1 {
+  font-size: 42px;
+  font-weight: 900;
+  line-height: 1.25;
+  margin-bottom: 16px;
+  position: relative;
+}
+.hero .subtitle {
+  font-size: 18px;
+  opacity: 0.92;
+  max-width: 640px;
+  margin: 0 auto 32px;
+  line-height: 1.65;
+}
+.hero .meta {
+  font-size: 13px;
+  opacity: 0.7;
+  letter-spacing: 0.5px;
+}
+
+/* ========== NAV ========== */
+.toc-bar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--xq-grey);
+  padding: 0 24px;
+  overflow-x: auto;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
+}
+.toc-bar::-webkit-scrollbar { height: 0; }
+.toc-bar a {
+  display: inline-block;
+  padding: 14px 18px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--xq-mute);
+  text-decoration: none;
+  border-bottom: 3px solid transparent;
+  transition: all 0.2s;
+}
+.toc-bar a:hover,
+.toc-bar a.active {
+  color: var(--xq-primary);
+  border-bottom-color: var(--xq-primary);
+}
+
+/* ========== CONTAINER ========== */
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 48px 24px 96px;
+}
+
+/* ========== SECTION ========== */
+section {
+  margin-bottom: 64px;
+}
+section h2 {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--xq-ink);
+  margin-bottom: 8px;
+  padding-left: 20px;
+  border-left: 5px solid var(--xq-primary);
+}
+section .section-sub {
+  font-size: 15px;
+  color: var(--xq-mute);
+  margin-bottom: 32px;
+  padding-left: 25px;
+}
+section p {
+  margin-bottom: 16px;
+  color: rgba(14,23,38,0.85);
+}
+
+/* ========== CARDS ========== */
+.card {
+  background: var(--xq-card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 32px;
+  margin-bottom: 24px;
+  border: 1px solid rgba(14,23,38,0.04);
+  transition: box-shadow 0.3s;
+}
+.card:hover {
+  box-shadow: var(--shadow-lg);
+}
+.card h3 {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--xq-ink);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.card h3 .icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+.card h3 .icon.blue { background: var(--xq-bg); color: var(--xq-primary); }
+.card h3 .icon.gold { background: #FFF8E6; color: #D4960A; }
+.card h3 .icon.red  { background: #FFF0EF; color: var(--xq-red); }
+.card h3 .icon.dark { background: #F0F1F3; color: var(--xq-ink); }
+
+.card ul, .card ol {
+  padding-left: 20px;
+  margin-top: 8px;
+}
+.card li {
+  margin-bottom: 8px;
+  color: rgba(14,23,38,0.82);
+}
+.card li strong {
+  color: var(--xq-ink);
+}
+
+/* ========== FLOW DIAGRAM ========== */
+.flow {
+  display: flex;
+  gap: 0;
+  align-items: stretch;
+  margin: 32px 0;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.flow-step {
+  flex: 1;
+  min-width: 220px;
+  max-width: 300px;
+  background: var(--xq-card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 28px 24px;
+  text-align: center;
+  position: relative;
+  border: 1px solid rgba(14,23,38,0.04);
+}
+.flow-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  color: var(--xq-primary);
+  min-width: 48px;
+  flex-shrink: 0;
+}
+.flow-step .step-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--xq-primary), var(--xq-primary-d));
+  color: #fff;
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 14px;
+}
+.flow-step h4 {
+  font-size: 17px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: var(--xq-ink);
+}
+.flow-step p {
+  font-size: 14px;
+  color: var(--xq-mute);
+  line-height: 1.55;
+}
+.flow-step .ask-count {
+  display: inline-block;
+  background: var(--xq-accent);
+  color: var(--xq-ink);
+  font-weight: 700;
+  font-size: 12px;
+  padding: 3px 10px;
+  border-radius: 12px;
+  margin-top: 10px;
+}
+
+/* ========== MODULE TABLE ========== */
+.module-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  margin-top: 16px;
+}
+.module-item {
+  background: var(--xq-card);
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(14,23,38,0.06);
+  padding: 20px 24px;
+  border-left: 4px solid var(--xq-primary);
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.module-item:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow);
+}
+.module-item.required {
+  border-left-color: var(--xq-red);
+}
+.module-item.optional {
+  border-left-color: var(--xq-primary-l);
+}
+.module-item.user-input {
+  border-left-color: var(--xq-accent);
+}
+.module-num {
+  min-width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--xq-bg);
+  color: var(--xq-primary);
+  font-weight: 700;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.module-item.required .module-num {
+  background: #FFF0EF;
+  color: var(--xq-red);
+}
+.module-item.user-input .module-num {
+  background: #FFF8E6;
+  color: #D4960A;
+}
+.module-body h4 {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 4px;
+  color: var(--xq-ink);
+}
+.module-body .desc {
+  font-size: 14px;
+  color: var(--xq-mute);
+  margin-bottom: 6px;
+}
+.module-body .tag {
+  display: inline-block;
+  font-size: 12px;
+  padding: 2px 10px;
+  border-radius: 10px;
+  font-weight: 500;
+}
+.tag.req { background: #FFF0EF; color: var(--xq-red); }
+.tag.auto { background: var(--xq-bg); color: var(--xq-primary); }
+.tag.manual { background: #FFF8E6; color: #D4960A; }
+.tag.pages { background: #F0F1F3; color: var(--xq-ink); }
+
+/* ========== ALERT ========== */
+.alert {
+  border-radius: 12px;
+  padding: 20px 24px;
+  margin: 24px 0;
+  font-size: 15px;
+  line-height: 1.65;
+}
+.alert.danger {
+  background: #FFF0EF;
+  border: 1px solid rgba(229,54,43,0.2);
+  color: #9B1B12;
+}
+.alert.info {
+  background: var(--xq-bg);
+  border: 1px solid rgba(30,127,255,0.15);
+  color: var(--xq-primary-d);
+}
+.alert.warn {
+  background: #FFF8E6;
+  border: 1px solid rgba(255,201,60,0.3);
+  color: #8A6800;
+}
+.alert .alert-title {
+  font-weight: 700;
+  font-size: 16px;
+  margin-bottom: 6px;
+}
+
+/* ========== CODE ========== */
+.code-block {
+  background: var(--xq-ink);
+  color: #E6EDF6;
+  border-radius: 12px;
+  padding: 24px 28px;
+  font-family: 'SF Mono', 'JetBrains Mono', 'Fira Code', monospace;
+  font-size: 14px;
+  line-height: 1.7;
+  overflow-x: auto;
+  margin: 16px 0;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+.code-block .comment { color: #6B7D99; }
+.code-block .keyword { color: var(--xq-accent); }
+.code-block .string  { color: #7EE0A0; }
+
+/* ========== TABLE ========== */
+.data-table-wrap {
+  overflow-x: auto;
+  margin: 16px 0;
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+}
+table.dtable {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  background: #fff;
+}
+table.dtable th {
+  background: var(--xq-primary-d);
+  color: #fff;
+  padding: 14px 16px;
+  text-align: left;
+  font-weight: 600;
+  white-space: nowrap;
+}
+table.dtable td {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--xq-grey);
+  vertical-align: top;
+}
+table.dtable tr:nth-child(even) td {
+  background: var(--xq-bg);
+}
+table.dtable tr:last-child td {
+  border-bottom: none;
+}
+
+/* ========== CHECKLIST ========== */
+.checklist {
+  list-style: none;
+  padding: 0;
+  margin: 16px 0;
+}
+.checklist li {
+  padding: 10px 0 10px 36px;
+  position: relative;
+  border-bottom: 1px solid var(--xq-grey);
+  font-size: 15px;
+  color: rgba(14,23,38,0.85);
+}
+.checklist li:last-child { border-bottom: none; }
+.checklist li::before {
+  content: '☐';
+  position: absolute;
+  left: 6px;
+  top: 10px;
+  font-size: 18px;
+  color: var(--xq-primary);
+}
+
+/* ========== KEYWORD TAGS ========== */
+.kw-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 12px 0;
+}
+.kw {
+  display: inline-block;
+  background: var(--xq-bg);
+  color: var(--xq-primary);
+  border: 1px solid rgba(30,127,255,0.2);
+  padding: 5px 14px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* ========== COMPETITOR FRAMEWORK ========== */
+.compete-dims {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  margin: 16px 0;
+}
+.compete-dim {
+  background: var(--xq-card);
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 2px 12px rgba(14,23,38,0.06);
+  border-top: 4px solid var(--xq-primary);
+}
+.compete-dim:nth-child(2) { border-top-color: #5A4FCF; }
+.compete-dim:nth-child(3) { border-top-color: #FF7A3C; }
+.compete-dim:nth-child(4) { border-top-color: var(--xq-accent); }
+.compete-dim .dim-icon { font-size: 32px; margin-bottom: 8px; }
+.compete-dim h5 { font-size: 16px; font-weight: 700; margin-bottom: 6px; }
+.compete-dim p { font-size: 13px; color: var(--xq-mute); }
+
+/* ========== THEME PREVIEW ========== */
+.theme-preview {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin: 20px 0;
+}
+.theme-card {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  border: 2px solid transparent;
+  transition: border-color 0.2s;
+}
+.theme-card:hover {
+  border-color: var(--xq-primary);
+}
+.theme-header {
+  padding: 24px;
+  color: #fff;
+  text-align: center;
+}
+.theme-card:first-child .theme-header {
+  background: linear-gradient(135deg, var(--xq-primary-d), var(--xq-primary));
+}
+.theme-card:last-child .theme-header {
+  background: linear-gradient(135deg, #7A1F2B, #C8272A);
+}
+.theme-header h5 { font-size: 18px; font-weight: 700; }
+.theme-header p { font-size: 13px; opacity: 0.85; margin-top: 4px; }
+.theme-colors {
+  display: flex;
+  gap: 0;
+  height: 8px;
+}
+.theme-colors span {
+  flex: 1;
+  display: block;
+}
+.theme-body {
+  padding: 16px 20px;
+  background: #fff;
+  font-size: 13px;
+  color: var(--xq-mute);
+  line-height: 1.55;
+}
+
+/* ========== FOOTER ========== */
+.page-footer {
+  text-align: center;
+  padding: 48px 24px;
+  background: var(--xq-ink);
+  color: rgba(255,255,255,0.6);
+  font-size: 14px;
+}
+.page-footer .logo-text {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--xq-accent);
+  margin-bottom: 8px;
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 680px) {
+  .hero h1 { font-size: 28px; }
+  .hero { padding: 56px 20px 48px; }
+  .flow { flex-direction: column; align-items: center; }
+  .flow-arrow { transform: rotate(90deg); min-width: auto; padding: 8px 0; }
+  .flow-step { max-width: 100%; }
+  .theme-preview { grid-template-columns: 1fr; }
+  section h2 { font-size: 22px; }
+  .compete-dims { grid-template-columns: 1fr 1fr; }
+}
 </style>
 </head>
 <body>
-<div class="page">
 
-<div class="hdr">
-  <div>
-    <h1>📋 商业化部 · 2026周报 · W16（0411–0417）</h1>
-    <p>汇报部门：商业化部</p>
+<!-- ==================== HERO ==================== -->
+<header class="hero">
+  <div class="badge">SKILL 使用说明书 · v1.1</div>
+  <h1>雪球上市公司<br>MVM / IR 传播方案生成器</h1>
+  <p class="subtitle">从客户名到路演级 PPT，三步交付。<br>14 个模块逐项确认，自动跑数 + 智能编排 + 一键出稿。</p>
+  <p class="meta">xueqiu-listed-mvm-plan · 更新于 2026-04-22 · Driven Agent Skill</p>
+</header>
+
+<!-- ==================== TOC ==================== -->
+<nav class="toc-bar">
+  <a href="#what">这是什么</a>
+  <a href="#trigger">触发条件</a>
+  <a href="#flow">三步流程</a>
+  <a href="#modules">14 个板块</a>
+  <a href="#compete">竞对框架</a>
+  <a href="#theme">PPT 主题</a>
+  <a href="#rules">核心约束</a>
+  <a href="#checklist">成功标准</a>
+  <a href="#faq">FAQ</a>
+</nav>
+
+<div class="container">
+
+<!-- ==================== WHAT ==================== -->
+<section id="what">
+  <h2>这是什么</h2>
+  <p class="section-sub">一句话：帮销售把上市公司客户的基本面 + 股价叙事 + 传播诉求，转化为路演级传播方案。</p>
+
+  <div class="card">
+    <h3><span class="icon blue">🎯</span>核心定位</h3>
+    <p>你不是模板生成器。你是雪球上市公司市值管理（MVM）与 IR 传播的<strong>首席策划</strong>，深谙资本市场博弈逻辑、雪球社区情绪与 PGC/UGC 生态。</p>
+    <p>输出物的标准：<strong>能直接交给上市公司 IR 总监、董秘、市值管理负责人过会讨论的材料</strong>——逻辑严密、数据可溯、投资调性浓郁、视觉专业。</p>
   </div>
-  <div class="hdr-badge">W16<br>2026 第16周</div>
-</div>
 
-<!-- 一、年度业绩 -->
-<div class="sec">一、26年年度业绩情况</div>
-<div class="card" style="margin-bottom:10px">
-  <ul class="pts">
-    <li><span class="kw">【执行】</span>截至4月17日，全年执行净收 <span class="kw">2,352.74万</span>，年度目标完成 <span class="kw">25.57%</span>，二季度目标完成 <span class="kw">14.47%</span>；</li>
-    <li><span class="kw">【签约】</span>截至4月17日，全年签约流水 <span class="kw">2,865.54万</span>，年度目标完成 <span class="kw">31.15%</span>，二季度目标完成 <span class="kw">10.93%</span>。</li>
-  </ul>
-  <p class="note">数据周期为26年1月1日—4月17日；各时间节点目标按照预算目标计算。</p>
-</div>
+  <div class="card">
+    <h3><span class="icon gold">📦</span>交付物清单</h3>
+    <ul>
+      <li><strong>Markdown 文字版方案</strong>：完整叙事闭环，每模块有主标题句 + 小标题句 + 正文 + 销售补充占位</li>
+      <li><strong>HTML PPT 演示文稿</strong>：1920×1080，可直接浏览器预览、⌘+P 导出 PDF、Keynote 打开</li>
+    </ul>
+  </div>
 
-<div class="card" style="margin-bottom:12px">
-  <table class="rpt">
-    <tr>
-      <th rowspan="2">分类</th>
-      <th colspan="3">2026年</th>
-      <th colspan="3">Q2</th>
-      <th colspan="3">4月</th>
-    </tr>
-    <tr>
-      <th>实际金额</th><th>预算目标</th><th>年-进度</th>
-      <th>实际金额</th><th>预算目标</th><th>季-进度</th>
-      <th>实际金额</th><th>预算目标</th><th>月-进度</th>
-    </tr>
-    <tr>
-      <td class="L"><b>执行净收</b></td>
-      <td>¥23,527,374</td><td>¥92,000,000</td><td><span class="tag tag-under">25.57%</span></td>
-      <td>¥3,302,412</td><td>¥22,825,000</td><td><span class="tag tag-under">14.47%</span></td>
-      <td>¥3,302,412</td><td>¥7,497,500</td><td><span class="tag tag-under">44.05%</span></td>
-    </tr>
-    <tr>
-      <td class="L"><b>签约流水</b></td>
-      <td>¥28,655,400</td><td>¥92,000,000</td><td><span class="tag tag-under">31.15%</span></td>
-      <td>¥2,481,000</td><td>¥22,700,000</td><td><span class="tag tag-under">10.93%</span></td>
-      <td>¥2,481,000</td><td>¥7,435,000</td><td><span class="tag tag-under">33.37%</span></td>
-    </tr>
-  </table>
-</div>
+  <div class="card">
+    <h3><span class="icon dark">🔌</span>自动调用的数据源 & 技能</h3>
+    <ul>
+      <li><strong>webSearch</strong> — 行业趋势、券商研报、财经资讯</li>
+      <li><strong>xq（雪球数据）</strong> — 社区热度、搜索量、发帖量、PGC/UGC 声音</li>
+      <li><strong>snow-pulse / snow-pulse-standalone</strong> — 个股分析（价格归因、社区活跃度、情绪）</li>
+      <li><strong>competitor-analysis</strong> — 竞对筛选与四维对标</li>
+      <li><strong>fmp</strong> — 基本面数据、财务指标、估值、分析师预期</li>
+      <li><strong>listing-radar</strong>（可选） — 投资者关切维度判断</li>
+    </ul>
+  </div>
+</section>
 
-<!-- 执行一行 -->
-<div style="display:grid;grid-template-columns:1fr 1.1fr 1.9fr;gap:12px;margin-bottom:12px">
-  <div class="card" style="display:flex;flex-direction:column;justify-content:space-between;gap:0">
-    <div class="ct" style="margin-bottom:16px">执行进度</div>
-    <div style="display:flex;flex-direction:column;gap:16px">
-      <div>
-        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:4px">
-          <span style="font-size:11px;color:#6a7a9a;font-weight:600">年度进度</span>
-          <span style="font-size:11px;color:#8a9bbf">2,353万 / 9,200万</span>
-        </div>
-        <div style="font-size:19px;font-weight:700;color:#1a2340;line-height:1;margin-bottom:5px">25.57%</div>
-        <div style="background:#e8eef7;border-radius:4px;height:7px;overflow:hidden"><div style="width:25.57%;height:100%;background:#2E75B6;border-radius:4px"></div></div>
+<!-- ==================== TRIGGER ==================== -->
+<section id="trigger">
+  <h2>触发条件</h2>
+  <p class="section-sub">对话中出现以下关键词组合即自动触发</p>
+
+  <div class="card">
+    <h3><span class="icon blue">⚡</span>关键词组合（任一即可）</h3>
+    <div class="kw-group">
+      <span class="kw">公司名 / 股票代码</span>
+      <span class="kw">+</span>
+    </div>
+    <div class="kw-group">
+      <span class="kw">方案</span>
+      <span class="kw">营销方案</span>
+      <span class="kw">传播方案</span>
+      <span class="kw">传播规划</span>
+      <span class="kw">路演</span>
+      <span class="kw">过会</span>
+      <span class="kw">市值管理</span>
+      <span class="kw">MVM</span>
+      <span class="kw">IR</span>
+      <span class="kw">预期管理</span>
+      <span class="kw">投资者关系材料</span>
+      <span class="kw">雪球方案</span>
+      <span class="kw">雪球合作</span>
+      <span class="kw">上市公司上雪球</span>
+    </div>
+  </div>
+
+  <div class="alert info">
+    <div class="alert-title">💡 适用范围</div>
+    A 股 / 港股 / 美股上市公司均可。ADR、港股分拆、SPAC 等非常规结构需额外确认。<br>
+    若客户是金融机构 / 基金 / 券商资管产品 → 请改用 <code>xueqiu-biz-plan</code> 金融段。
+  </div>
+
+  <div class="alert danger">
+    <div class="alert-title">🚫 不适用场景</div>
+    纯单股量化分析 · Fintech 基金营销 · 未上市 Pre-IPO Pitch · 行业研报撰写
+  </div>
+</section>
+
+<!-- ==================== FLOW ==================== -->
+<section id="flow">
+  <h2>三步交付流程</h2>
+  <p class="section-sub">全流程 16 次 askUser（Step 1 × 14 + Step 2 × 1 + Step 3 × 1），其他节点零阻断</p>
+
+  <div class="flow">
+    <div class="flow-step">
+      <div class="step-num">1</div>
+      <h4>分模块逐项问询</h4>
+      <p>14 个板块 · 每板块独立 askUser · 一次一题，锁定一个决策</p>
+      <span class="ask-count">14 次 askUser</span>
+    </div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step">
+      <div class="step-num">2</div>
+      <h4>文字版方案生成</h4>
+      <p>自动跑数 + 智能编排 → Markdown 文件 → 立即交付 → 确认或修改</p>
+      <span class="ask-count">1 次 askUser</span>
+    </div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step">
+      <div class="step-num">3</div>
+      <h4>PPT 生成</h4>
+      <p>选择视觉主题 → 自动生成 1920×1080 HTML PPT → 立即交付</p>
+      <span class="ask-count">1 次 askUser</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3><span class="icon blue">🔄</span>Step 1 · 问询节奏规则</h3>
+    <ul>
+      <li><strong>一次一问</strong>：每问只做一个决策，降低认知负担</li>
+      <li><strong>进度感</strong>：提问标题带 <code>板块 {n}/14 · {板块名}</code></li>
+      <li><strong>预填智能</strong>：能推断的内容一定预填，销售确认/覆盖即可</li>
+      <li><strong>就地复用</strong>：选"手动补充"→ 销售文本直接入稿，不再跑数</li>
+      <li><strong>不回退</strong>：不明确回复重问一次，仍不明确则非必填板块默认启用</li>
+      <li><strong>零插入</strong>：14 次之间不插 presentFile，全部收完才进 Step 2</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3><span class="icon gold">📝</span>Step 2 · 自动文字稿</h3>
+    <ul>
+      <li>按勾选模块顺序输出，每模块四段式结构：<strong>主标题句 → 小标题句 → 正文 → 📝销售补充</strong></li>
+      <li>自动调用 snow-pulse / 市场搜索 / 雪球热度 / 竞对分析 等数据源</li>
+      <li>模块间有<strong>承上启下</strong>叙事闭环</li>
+      <li>写入 <code>{客户简称}-{日期}-传播方案.md</code> → 立即交付</li>
+      <li>结尾只问一次："确认生成 PPT / 需要修改"</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3><span class="icon dark">🎨</span>Step 3 · PPT 生成</h3>
+    <ul>
+      <li>问一次模板方向：<strong>A = 雪球蓝官方模板</strong> / <strong>B = 客户调性融合定制</strong></li>
+      <li>选完直接生成 HTML PPT，不再问任何问题</li>
+      <li>结尾用 passive 菜单收尾，告知可做的后续操作</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ==================== MODULES ==================== -->
+<section id="modules">
+  <h2>14 个板块详解</h2>
+  <p class="section-sub">红色 = 必填 · 蓝色 = 可选（三选一：✅启用 / ✍️手动 / ⏭️跳过）· 金色 = 用户自由输入</p>
+
+  <div class="module-grid">
+
+    <div class="module-item required">
+      <div class="module-num">1</div>
+      <div class="module-body">
+        <h4>上市公司客户名称</h4>
+        <div class="desc">自由输入，预填识别到的公司名 + 股票代码。合并进封面页。</div>
+        <span class="tag req">必填</span>
       </div>
-      <div style="border-top:.5px solid #eef1f8"></div>
-      <div>
-        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:4px">
-          <span style="font-size:11px;color:#6a7a9a;font-weight:600">Q2进度</span>
-          <span style="font-size:11px;color:#8a9bbf">330万 / 2,283万</span>
-        </div>
-        <div style="font-size:19px;font-weight:700;color:#1a2340;line-height:1;margin-bottom:5px">14.47%</div>
-        <div style="background:#e8eef7;border-radius:4px;height:7px;overflow:hidden"><div style="width:14.47%;height:100%;background:#2E75B6;border-radius:4px"></div></div>
+    </div>
+
+    <div class="module-item required">
+      <div class="module-num">2</div>
+      <div class="module-body">
+        <h4>传播目标</h4>
+        <div class="desc">目标拆解为 3 个子目标（声量 / 机构覆盖 / 散户渗透），附考核口径。</div>
+        <span class="tag req">必填</span> <span class="tag pages">1 页</span>
       </div>
-      <div style="border-top:.5px solid #eef1f8"></div>
-      <div>
-        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:4px">
-          <span style="font-size:11px;color:#6a7a9a;font-weight:600">4月进度</span>
-          <span style="font-size:11px;color:#8a9bbf">330万 / 750万</span>
+    </div>
+
+    <div class="module-item optional">
+      <div class="module-num">3</div>
+      <div class="module-body">
+        <h4>市场洞察</h4>
+        <div class="desc">全网搜索近一年行业趋势，提炼 2-3 页。数据源：webSearch（券商研报 / 头部财经媒体）。</div>
+        <span class="tag auto">自动跑数</span> <span class="tag pages">2-3 页</span>
+      </div>
+    </div>
+
+    <div class="module-item optional">
+      <div class="module-num">4</div>
+      <div class="module-body">
+        <h4>为什么是雪球</h4>
+        <div class="desc">雪球用户画像重合度、三大传播引擎、差异化工具矩阵、过往案例。内容尽量充分，宁多勿少。</div>
+        <span class="tag auto">自动跑数</span> <span class="tag pages">1-3 页</span>
+      </div>
+    </div>
+
+    <div class="module-item optional">
+      <div class="module-num">5</div>
+      <div class="module-body">
+        <h4>雪球社区热度云图</h4>
+        <div class="desc">半年热词搜索量 + 发帖量趋势 + PGC vs UGC 声音分层 + 情绪温度。数据源：xq 站内接口。</div>
+        <span class="tag auto">自动跑数</span> <span class="tag pages">2-3 页</span>
+      </div>
+    </div>
+
+    <div class="module-item optional">
+      <div class="module-num">6</div>
+      <div class="module-body">
+        <h4>个股分析</h4>
+        <div class="desc">基本面坐标 + 估值位置 + 叙事催化剂清单。首选 snow-pulse-standalone 技能驱动。</div>
+        <span class="tag auto">自动跑数</span> <span class="tag pages">≥3 页</span>
+      </div>
+    </div>
+
+    <div class="module-item optional">
+      <div class="module-num">7</div>
+      <div class="module-body">
+        <h4>竞对分析</h4>
+        <div class="desc">同市值 / 大市值 / 高成长各 1 家 × MVM/IR/PR/财报传播四维对标 + 雪球站内热度对比。</div>
+        <span class="tag auto">自动跑数</span> <span class="tag pages">2-3 页</span>
+        <div class="desc" style="margin-top:4px; font-style:italic;">⚠️ 可追问竞对名单（算入本板块流程）</div>
+      </div>
+    </div>
+
+    <div class="module-item optional">
+      <div class="module-num">8</div>
+      <div class="module-body">
+        <h4>传播策略</h4>
+        <div class="desc">从前面模块推导 3-5 个策略维度：内容引擎 / 节奏引擎 / 互动引擎 / 数据引擎四象限。</div>
+        <span class="tag auto">自动推导</span> <span class="tag pages">1 页</span>
+      </div>
+    </div>
+
+    <div class="module-item optional">
+      <div class="module-num">9</div>
+      <div class="module-body">
+        <h4>传播主题</h4>
+        <div class="desc">1 个主推主题 + 3-5 个备选，每个配推导逻辑。投资语言/雪球语言调性。</div>
+        <span class="tag auto">自动推导</span> <span class="tag pages">1 页</span>
+      </div>
+    </div>
+
+    <div class="module-item optional">
+      <div class="module-num">10</div>
+      <div class="module-body">
+        <h4>传播节奏 ROADMAP</h4>
+        <div class="desc">横向三阶段时间轴：预热期 → 引爆期 → 长尾期，每阶段标注核心目标/动作/里程碑。</div>
+        <span class="tag auto">自动跑数</span> <span class="tag pages">1 页</span>
+        <div class="desc" style="margin-top:4px; font-style:italic;">⚠️ 可追问关键日期锚（算入本板块流程）</div>
+      </div>
+    </div>
+
+    <div class="module-item optional">
+      <div class="module-num">11</div>
+      <div class="module-body">
+        <h4>传播节奏概述</h4>
+        <div class="desc">每阶段 1-2 页展开，具体动作 + 资源匹配 + 产出物示范 + 对应 sku 编号。</div>
+        <span class="tag auto">自动跑数</span> <span class="tag pages">3-6 页</span>
+      </div>
+    </div>
+
+    <div class="module-item user-input">
+      <div class="module-num">12</div>
+      <div class="module-body">
+        <h4>优质案例</h4>
+        <div class="desc">销售提供案例素材。留空则不体现。每案例一页：合作时段 + 核心打法 + 数据成果 + 迁移启示。</div>
+        <span class="tag manual">用户提供</span>
+      </div>
+    </div>
+
+    <div class="module-item user-input">
+      <div class="module-num">13</div>
+      <div class="module-body">
+        <h4>资源报价</h4>
+        <div class="desc">销售提供报价信息或指向内部报价单。必须与传播节奏 sku 一一对应。严禁擅自编造价格。</div>
+        <span class="tag manual">用户提供</span>
+      </div>
+    </div>
+
+    <div class="module-item user-input">
+      <div class="module-num">14</div>
+      <div class="module-body">
+        <h4>其他内容补充</h4>
+        <div class="desc">客户红线、合规口径、特定 IR 事件等附录内容。留空则不体现。</div>
+        <span class="tag manual">用户提供</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ==================== NARRATIVE ==================== -->
+<section id="narrative">
+  <h2>叙事闭环逻辑</h2>
+  <p class="section-sub">方案的灵魂：不是八个独立 section，而是一个连贯的投资故事</p>
+
+  <div class="card" style="padding: 0; overflow: hidden;">
+    <div style="display: flex; flex-direction: column;">
+      <div style="display: flex; align-items: center; padding: 16px 24px; background: var(--xq-bg); border-bottom: 1px solid var(--xq-grey);">
+        <span style="font-size: 20px; margin-right: 12px;">📊</span>
+        <div>
+          <strong>市场洞察</strong>（行业 β）
+          <div style="font-size: 13px; color: var(--xq-mute);">↓ "行业 β 已定价，焦点回到公司 α"</div>
         </div>
-        <div style="font-size:19px;font-weight:700;color:#1a2340;line-height:1;margin-bottom:5px">44.05%</div>
-        <div style="background:#e8eef7;border-radius:4px;height:7px;overflow:hidden"><div style="width:44.05%;height:100%;background:#2E75B6;border-radius:4px"></div></div>
+      </div>
+      <div style="display: flex; align-items: center; padding: 16px 24px; border-bottom: 1px solid var(--xq-grey);">
+        <span style="font-size: 20px; margin-right: 12px;">🔍</span>
+        <div>
+          <strong>个股分析 + 雪球社区热度</strong>（公司 α）
+          <div style="font-size: 13px; color: var(--xq-mute);">↓ "公司 α 充分、估值安全、催化剂在手"</div>
+        </div>
+      </div>
+      <div style="display: flex; align-items: center; padding: 16px 24px; background: var(--xq-bg); border-bottom: 1px solid var(--xq-grey);">
+        <span style="font-size: 20px; margin-right: 12px;">⚔️</span>
+        <div>
+          <strong>竞对分析</strong>（相对估值 + 传播打法参考）
+          <div style="font-size: 13px; color: var(--xq-mute);">↓ "同行怎么做，客户差异化在哪"</div>
+        </div>
+      </div>
+      <div style="display: flex; align-items: center; padding: 16px 24px; border-bottom: 1px solid var(--xq-grey);">
+        <span style="font-size: 20px; margin-right: 12px;">🧭</span>
+        <div>
+          <strong>传播策略</strong>（3-5 叙事维度）
+          <div style="font-size: 13px; color: var(--xq-mute);">↓ "四大引擎协同的策略三叉戟"</div>
+        </div>
+      </div>
+      <div style="display: flex; align-items: center; padding: 16px 24px; background: var(--xq-bg); border-bottom: 1px solid var(--xq-grey);">
+        <span style="font-size: 20px; margin-right: 12px;">💎</span>
+        <div>
+          <strong>传播主题</strong>（1 主 + 3-5 备选）
+          <div style="font-size: 13px; color: var(--xq-mute);">↓ "一锤定音的叙事锚"</div>
+        </div>
+      </div>
+      <div style="display: flex; align-items: center; padding: 16px 24px; border-bottom: 1px solid var(--xq-grey);">
+        <span style="font-size: 20px; margin-right: 12px;">📅</span>
+        <div>
+          <strong>传播节奏 ROADMAP</strong>（三阶段）
+          <div style="font-size: 13px; color: var(--xq-mute);">↓ "预热 → 引爆 → 长尾"</div>
+        </div>
+      </div>
+      <div style="display: flex; align-items: center; padding: 16px 24px; background: var(--xq-bg);">
+        <span style="font-size: 20px; margin-right: 12px;">🚀</span>
+        <div>
+          <strong>传播节奏概述</strong>（每阶段具体动作 + 资源匹配）
+          <div style="font-size: 13px; color: var(--xq-mute);">→ 案例背书 → 报价对齐 → 附录闭环</div>
+        </div>
       </div>
     </div>
   </div>
-  <div class="card">
-    <div class="ct">执行同比（0101–0417）万元</div>
-    <div class="leg"><span><span class="sq" style="background:#2E75B6"></span>26年执行</span><span><span class="sq" style="background:#F07020"></span>25年执行</span></div>
-    <svg id="b1" width="100%" height="170" viewBox="0 0 220 170"></svg>
-  </div>
-  <div class="card">
-    <div class="ct">三区执行同比（0101–0417）万元</div>
-    <div class="leg"><span><span class="sq" style="background:#2E75B6"></span>26年执行</span><span><span class="sq" style="background:#F07020"></span>25年执行</span></div>
-    <svg id="b3" width="100%" height="170" viewBox="0 0 460 170"></svg>
-  </div>
-</div>
 
-<!-- 签约一行 -->
-<div style="display:grid;grid-template-columns:1fr 1.1fr 1.9fr;gap:12px;margin-bottom:12px">
-  <div class="card" style="display:flex;flex-direction:column;justify-content:space-between;gap:0">
-    <div class="ct" style="margin-bottom:16px">签约进度</div>
-    <div style="display:flex;flex-direction:column;gap:16px">
-      <div>
-        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:4px">
-          <span style="font-size:11px;color:#6a7a9a;font-weight:600">年度进度</span>
-          <span style="font-size:11px;color:#8a9bbf">2,866万 / 9,200万</span>
-        </div>
-        <div style="font-size:19px;font-weight:700;color:#1a2340;line-height:1;margin-bottom:5px">31.15%</div>
-        <div style="background:#e8eef7;border-radius:4px;height:7px;overflow:hidden"><div style="width:31.15%;height:100%;background:#2E75B6;border-radius:4px"></div></div>
+  <div class="alert info">
+    <div class="alert-title">📝 实操要求</div>
+    每个模块末尾加一句"承上启下"，让整篇方案读下来是<strong>一个连贯的故事</strong>，不是拼凑的 section。
+  </div>
+</section>
+
+<!-- ==================== COMPETE ==================== -->
+<section id="compete">
+  <h2>竞对分析四维框架</h2>
+  <p class="section-sub">每家竞对覆盖四个维度，每个维度 2-3 个可观测信号</p>
+
+  <div class="card">
+    <h3><span class="icon blue">🎯</span>选样规则（3 家）</h3>
+    <div class="data-table-wrap">
+      <table class="dtable">
+        <thead>
+          <tr>
+            <th>类型</th>
+            <th>筛选标准</th>
+            <th>对标价值</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>同市值竞对</strong></td>
+            <td>市值 ±30%</td>
+            <td>估值对标</td>
+          </tr>
+          <tr>
+            <td><strong>大市值竞对</strong></td>
+            <td>市值 ≥ 客户 2 倍</td>
+            <td>头部打法参考</td>
+          </tr>
+          <tr>
+            <td><strong>高成长竞对</strong></td>
+            <td>近 3 年营收 CAGR ≥ 20%</td>
+            <td>叙事升级路径参考</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="compete-dims">
+    <div class="compete-dim">
+      <div class="dim-icon">💰</div>
+      <h5>MVM 动作</h5>
+      <p>回购 · 大股东增持<br>分红 · 股权激励<br>市值管理表态</p>
+    </div>
+    <div class="compete-dim">
+      <div class="dim-icon">🤝</div>
+      <h5>IR 动作</h5>
+      <p>业绩说明会 · 路演<br>分析师覆盖 · 机构调研<br>雪球董秘直答</p>
+    </div>
+    <div class="compete-dim">
+      <div class="dim-icon">📣</div>
+      <h5>PR 动作</h5>
+      <p>官方账号矩阵<br>大事件发布节奏<br>ESG 披露 · 品牌热度</p>
+    </div>
+    <div class="compete-dim">
+      <div class="dim-icon">📰</div>
+      <h5>财报传播</h5>
+      <p>预喜节奏 · 图文卡片<br>雪球专题页 · 专家连线<br>T±5 日股价反应</p>
+    </div>
+  </div>
+
+  <div class="alert info">
+    <div class="alert-title">📊 雪球站内热度对标（收口）</div>
+    三家竞对 + 客户，统一采集近 180 天的搜索量趋势、发帖量趋势、PGC 声音 Top3，输出四方对比表。<br>
+    最后给客户一句<strong>可迁移启示</strong>：可以抄哪个 + 差异化做哪个。
+  </div>
+</section>
+
+<!-- ==================== THEME ==================== -->
+<section id="theme">
+  <h2>PPT 主题选择</h2>
+  <p class="section-sub">Step 3 二选一，选完立即生成</p>
+
+  <div class="theme-preview">
+    <div class="theme-card">
+      <div class="theme-header">
+        <h5>A · 雪球蓝官方模板</h5>
+        <p>推荐 · 30 秒出稿</p>
       </div>
-      <div style="border-top:.5px solid #eef1f8"></div>
-      <div>
-        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:4px">
-          <span style="font-size:11px;color:#6a7a9a;font-weight:600">Q2进度</span>
-          <span style="font-size:11px;color:#8a9bbf">248万 / 2,270万</span>
-        </div>
-        <div style="font-size:19px;font-weight:700;color:#1a2340;line-height:1;margin-bottom:5px">10.93%</div>
-        <div style="background:#e8eef7;border-radius:4px;height:7px;overflow:hidden"><div style="width:10.93%;height:100%;background:#2E75B6;border-radius:4px"></div></div>
+      <div class="theme-colors">
+        <span style="background: #1E7FFF;"></span>
+        <span style="background: #0B4FAE;"></span>
+        <span style="background: #6FA9FF;"></span>
+        <span style="background: #FFC93C;"></span>
+        <span style="background: #0E1726;"></span>
       </div>
-      <div style="border-top:.5px solid #eef1f8"></div>
-      <div>
-        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:4px">
-          <span style="font-size:11px;color:#6a7a9a;font-weight:600">4月进度</span>
-          <span style="font-size:11px;color:#8a9bbf">248万 / 744万</span>
-        </div>
-        <div style="font-size:19px;font-weight:700;color:#1a2340;line-height:1;margin-bottom:5px">33.37%</div>
-        <div style="background:#e8eef7;border-radius:4px;height:7px;overflow:hidden"><div style="width:33.37%;height:100%;background:#2E75B6;border-radius:4px"></div></div>
+      <div class="theme-body">
+        主色 <code>#1E7FFF</code> / 深蓝 <code>#0B4FAE</code> / 辅金 <code>#FFC93C</code> / 墨 <code>#0E1726</code><br>
+        客户 logo 占位，版式遵循雪球官方母版
+      </div>
+    </div>
+    <div class="theme-card">
+      <div class="theme-header">
+        <h5>B · 客户调性融合定制</h5>
+        <p>60 秒出稿</p>
+      </div>
+      <div class="theme-colors">
+        <span style="background: #7A1F2B;"></span>
+        <span style="background: #E5B971;"></span>
+        <span style="background: #C8272A;"></span>
+        <span style="background: #FFD166;"></span>
+        <span style="background: #1F1F1F;"></span>
+      </div>
+      <div class="theme-body">
+        基于客户 logo 主色 + 行业调性 + 投资语言调性自动推导<br>
+        系统自动执行反绿检测（HSL 90°-150° 区间全部屏蔽）
       </div>
     </div>
   </div>
-  <div class="card">
-    <div class="ct">签约同比（0101–0417）万元</div>
-    <div class="leg"><span><span class="sq" style="background:#2E75B6"></span>26年签约</span><span><span class="sq" style="background:#F07020"></span>25年签约</span></div>
-    <svg id="b2" width="100%" height="170" viewBox="0 0 220 170"></svg>
-  </div>
-  <div class="card">
-    <div class="ct">三区签约同比（0101–0417）万元</div>
-    <div class="leg"><span><span class="sq" style="background:#2E75B6"></span>26年签约</span><span><span class="sq" style="background:#F07020"></span>25年签约</span></div>
-    <svg id="b4" width="100%" height="170" viewBox="0 0 460 170"></svg>
-  </div>
-</div>
 
-<!-- 二、本周工作总结 -->
-<div class="sec">二、本周工作总结</div>
-<div class="sec2">1、本周业绩进展</div>
-<div class="card">
-  <ul class="pts">
-    <li><span class="kw">【执行】</span>W16（0411–0417）执行净收 <span class="kw">152.66万元</span>，相较W15（101.59万元）<span class="up">↑ 增加50.28%</span>；截至4月17日，4月目标完成 <span class="kw">44.05%</span>；</li>
-    <li><span class="kw">【签约】</span>W16（0411–0417）签约流水 <span class="kw">68.60万元</span>，相较W15（77.50万元）<span class="dn">↓ 减少11.48%</span>；截至4月17日，4月目标完成 <span class="kw">33.37%</span>。</li>
-  </ul>
-  <p class="note">注：周度目标按照月度预算目标/4计算。</p>
-</div>
-
-<div class="card">
-  <table class="rpt">
-    <tr><th>团队</th><th>实际执行净收</th><th>执行净收目标</th><th>周-进度</th><th>实际签约流水</th><th>签约流水目标</th><th>周-进度</th></tr>
-    <tr><td><b>商业化部</b></td><td>¥1,526,636</td><td>¥1,981,250</td><td><span class="tag tag-under">77.05%</span></td><td>¥686,000</td><td>¥1,945,250</td><td><span class="tag tag-under">35.27%</span></td></tr>
-    <tr><td><b>华北</b></td><td>¥419,893</td><td>¥632,500</td><td><span class="tag tag-under">66.39%</span></td><td>¥60,000</td><td>¥589,000</td><td><span class="tag tag-under">10.19%</span></td></tr>
-    <tr><td><b>华东</b></td><td>¥868,134</td><td>¥965,000</td><td><span class="tag tag-under">89.96%</span></td><td>¥520,000</td><td>¥940,000</td><td><span class="tag tag-under">55.32%</span></td></tr>
-    <tr><td><b>华南</b></td><td>¥238,609</td><td>¥373,750</td><td><span class="tag tag-under">63.84%</span></td><td>¥100,000</td><td>¥391,250</td><td><span class="tag tag-under">25.56%</span></td></tr>
-  </table>
-</div>
-
-<!-- 饼图+趋势 -->
-<div class="row13">
   <div class="card">
-    <div class="ct">上周区域执行（万元）</div>
-    <svg id="p1" width="100%" height="140" viewBox="0 0 200 140"></svg>
-    <div class="pie-leg">
-      <div class="plr"><span style="display:flex;align-items:center;gap:4px"><span style="width:9px;height:9px;background:#1F4E79;border-radius:1px;display:inline-block"></span>华北</span><b>41.99万</b><span>27.5%</span></div>
-      <div class="plr"><span style="display:flex;align-items:center;gap:4px"><span style="width:9px;height:9px;background:#2E75B6;border-radius:1px;display:inline-block"></span>华东</span><b>86.81万</b><span>56.9%</span></div>
-      <div class="plr"><span style="display:flex;align-items:center;gap:4px"><span style="width:9px;height:9px;background:#9DC3E6;border-radius:1px;display:inline-block"></span>华南</span><b>23.86万</b><span>15.6%</span></div>
+    <h3><span class="icon dark">🏗</span>PPT 技术规格</h3>
+    <div class="data-table-wrap">
+      <table class="dtable">
+        <thead>
+          <tr><th>规格</th><th>说明</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>格式</td><td>自包含 HTML 单文件（无外部 JS / 无外部图片 CDN）</td></tr>
+          <tr><td>画面尺寸</td><td>1920 × 1080（16:9 Landscape）</td></tr>
+          <tr><td>字体</td><td>Noto Sans SC（@import 内联，离线降级到系统字体）</td></tr>
+          <tr><td>每页换页</td><td><code>page-break-after: always</code></td></tr>
+          <tr><td>涨跌配色</td><td>红涨 <code style="color:#E5362B;">#E5362B</code> / 灰跌 <code style="color:#8A8F99;">#8A8F99</code>（A 股习惯）</td></tr>
+          <tr><td>导出方式</td><td>浏览器 ⌘+P → PDF / Keynote File → Open 直接导入</td></tr>
+        </tbody>
+      </table>
     </div>
   </div>
+
   <div class="card">
-    <div class="ct">周执行趋势图（万元）</div>
-    <svg id="t1" width="100%" height="200" viewBox="0 0 580 200"></svg>
-  </div>
-</div>
-<div class="row13">
-  <div class="card">
-    <div class="ct">上周区域签约（万元）</div>
-    <svg id="p2" width="100%" height="140" viewBox="0 0 200 140"></svg>
-    <div class="pie-leg">
-      <div class="plr"><span style="display:flex;align-items:center;gap:4px"><span style="width:9px;height:9px;background:#1F4E79;border-radius:1px;display:inline-block"></span>华北</span><b>6.00万</b><span>8.7%</span></div>
-      <div class="plr"><span style="display:flex;align-items:center;gap:4px"><span style="width:9px;height:9px;background:#2E75B6;border-radius:1px;display:inline-block"></span>华东</span><b>52.00万</b><span>75.8%</span></div>
-      <div class="plr"><span style="display:flex;align-items:center;gap:4px"><span style="width:9px;height:9px;background:#9DC3E6;border-radius:1px;display:inline-block"></span>华南</span><b>10.00万</b><span>14.6%</span></div>
+    <h3><span class="icon blue">📐</span>6 种页型（Slide Class）</h3>
+    <div class="data-table-wrap">
+      <table class="dtable">
+        <thead>
+          <tr><th>页型</th><th>用途</th><th>关键特征</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><code>.cover</code></td><td>封面页</td><td>渐变底 + 客户水印 + 传播主题 + 日期</td></tr>
+          <tr><td><code>.content</code></td><td>内容页（占 80%）</td><td>顶栏 tag + h1 主标题 + h2 小标题 + 正文</td></tr>
+          <tr><td><code>.data-table</code></td><td>数据 / 对比页</td><td>结构化表格 + 数据来源标注</td></tr>
+          <tr><td><code>.compete-matrix</code></td><td>竞对分析专用</td><td>三列布局 + 行业定调 tag + 四维段落</td></tr>
+          <tr><td><code>.roadmap</code></td><td>时间轴页</td><td>三列 Grid 并列（严禁叠加）</td></tr>
+          <tr><td><code>.thanks</code></td><td>感谢页</td><td>深色底 + THANKS + 联系方式占位</td></tr>
+        </tbody>
+      </table>
     </div>
   </div>
+</section>
+
+<!-- ==================== RULES ==================== -->
+<section id="rules">
+  <h2>核心约束</h2>
+  <p class="section-sub">全篇通用 · 不可违反</p>
+
   <div class="card">
-    <div class="ct">周签约趋势图（万元）</div>
-    <svg id="t2" width="100%" height="200" viewBox="0 0 580 200"></svg>
+    <h3><span class="icon red">🚫</span>1 · 严禁绿色</h3>
+    <p>封面、内页、图表、色块、强调色一律<strong>禁用绿色系</strong>。涨跌指示统一用<strong>红涨 · 灰跌</strong>（A 股习惯）。</p>
+    <p>CSS 变量层面屏蔽 HSL 色调角 80°-160° 区间。生成前自动运行反绿检测函数。</p>
+    <div style="display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap;">
+      <span style="display: inline-flex; align-items: center; gap: 6px; padding: 4px 12px; background: #FFF0EF; border-radius: 8px; font-size: 13px; color: #9B1B12;">
+        <span style="width: 16px; height: 16px; border-radius: 4px; background: #00B050; display: inline-block;"></span> #00B050 ✕
+      </span>
+      <span style="display: inline-flex; align-items: center; gap: 6px; padding: 4px 12px; background: #FFF0EF; border-radius: 8px; font-size: 13px; color: #9B1B12;">
+        <span style="width: 16px; height: 16px; border-radius: 4px; background: #2ECC71; display: inline-block;"></span> #2ECC71 ✕
+      </span>
+      <span style="display: inline-flex; align-items: center; gap: 6px; padding: 4px 12px; background: #FFF0EF; border-radius: 8px; font-size: 13px; color: #9B1B12;">
+        <span style="width: 16px; height: 16px; border-radius: 4px; background: #52C41A; display: inline-block;"></span> #52C41A ✕
+      </span>
+    </div>
   </div>
-</div>
 
-<!-- 本周重点 -->
-<div class="sec2">2、本周重点内容</div>
-<div class="card">
-  <div class="sec2" style="margin-top:0">① 本周签约：68.60万元</div>
-  <table class="rpt">
-    <tr><th class="L">项目</th><th>区域·行业</th><th>金额（万）</th><th>销售</th><th>备注</th></tr>
-    <tr><td class="L">华勤技术-26年合作</td><td>华东·上市</td><td>25.00</td><td>丁晓霞</td><td>新客</td></tr>
-    <tr><td class="L">易方达基金-26年合作</td><td>华东·金融</td><td>15.00</td><td>杨帆</td><td></td></tr>
-    <tr><td class="L">涂鸦智能-26年合作</td><td>华东·上市</td><td>12.00</td><td>王敏</td><td></td></tr>
-    <tr><td class="L">广发基金-26年合作</td><td>华南·金融</td><td>10.00</td><td>朱诗榆</td><td></td></tr>
-    <tr><td class="L">阿里巴巴-26年合作</td><td>华北·上市</td><td>6.00</td><td>宋一平</td><td></td></tr>
-    <tr><td class="L">洋河-26年合作</td><td>综合</td><td>0.60</td><td>综合</td><td></td></tr>
-    <tr class="total"><td colspan="2">合计</td><td>68.60</td><td colspan="2"></td></tr>
-  </table>
-</div>
+  <div class="card">
+    <h3><span class="icon blue">💬</span>2 · 投资语言 / 雪球语言</h3>
+    <p>通篇使用资本市场与雪球社区语汇。<strong>严禁</strong> PR 稿式形容词堆砌、严禁泛公关语言。</p>
+    <div class="kw-group" style="margin-top: 12px;">
+      <span class="kw" style="border-color: rgba(30,127,255,0.4);">估值弹性</span>
+      <span class="kw" style="border-color: rgba(30,127,255,0.4);">预期差</span>
+      <span class="kw" style="border-color: rgba(30,127,255,0.4);">叙事修复</span>
+      <span class="kw" style="border-color: rgba(30,127,255,0.4);">催化剂</span>
+      <span class="kw" style="border-color: rgba(30,127,255,0.4);">筹码结构</span>
+      <span class="kw" style="border-color: rgba(30,127,255,0.4);">机构抱团</span>
+      <span class="kw" style="border-color: rgba(30,127,255,0.4);">散户共识</span>
+      <span class="kw" style="border-color: rgba(30,127,255,0.4);">预期管理</span>
+    </div>
+    <div class="alert danger" style="margin-top: 16px; margin-bottom: 0;">
+      <strong>禁用词</strong>：乘风破浪 / 勇立潮头 / 再创辉煌 / 彰显担当 / 绿意盎然 / 春满枝头
+    </div>
+  </div>
 
-<div class="card">
-  <div class="sec2" style="margin-top:0">② 本周执行重点</div>
-  <ul class="pts" style="margin-bottom:14px">
-    <li>本周共计执行 <span class="kw">152.66万元</span>；其中<span class="kw">金融执行122.57万元</span>，主要来自国泰基金（创业板新能源ETF、半导体设备ETF、黄金股ETF持营）、工银瑞信基金（科创创业人工智能ETF、港股通科技30ETF持营）、华宝基金（股票私域产品植入）、易方达基金（储能电池ETF、创业板ETF持营）等；<span class="kw">上市执行30.09万元</span>，主要来自阿里巴巴日常传播、岚图汽车财报及调研团、珀莱雅日常传播等。</li>
-  </ul>
-  <div class="row2" style="margin-bottom:0">
-    <table class="rpt" style="table-layout:fixed">
-      <colgroup><col style="width:44px"><col style="width:90px"><col style="width:90px"><col></colgroup>
-      <tr><th colspan="4" style="height:44px;vertical-align:middle">金融行业 周执行TOP5客户</th></tr>
-      <tr><th>排序</th><th>客户</th><th>执行金额（元）</th><th class="L">主要执行内容</th></tr>
-      <tr style="height:48px"><td>1</td><td>国泰基金</td><td>248,200</td><td class="L">创业板新能源ETF、半导体设备ETF、黄金股ETF持营</td></tr>
-      <tr style="height:48px"><td>2</td><td>工银瑞信基金</td><td>173,200</td><td class="L">科创创业人工智能ETF、港股通科技30ETF持营</td></tr>
-      <tr style="height:48px"><td>3</td><td>华宝基金</td><td>157,200</td><td class="L">股票私域产品植入</td></tr>
-      <tr style="height:48px"><td>4</td><td>易方达基金</td><td>94,300</td><td class="L">储能电池ETF、创业板ETF持营</td></tr>
-      <tr style="height:48px"><td>5</td><td>万家基金</td><td>94,300</td><td class="L">工业有色ETF持营</td></tr>
+  <div class="card">
+    <h3><span class="icon gold">📋</span>3 · 每页必备双标题</h3>
+    <p>这是评判"路演级"的刚性标准：</p>
+    <ul>
+      <li><strong>主标题句</strong>（≤20 字）：带观点的叙事推进，如"基本面拐点已经出现"</li>
+      <li><strong>小标题句</strong>（≤40 字）：数据/结论精炼，如"2025 营收 +11.3%，自由现金流首次突破 500 亿"</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3><span class="icon red">⛔</span>4 · PPT 零叠加规则</h3>
+    <p>PPT 视觉层<strong>严禁</strong>任何版块/色块/文本框互相遮挡。</p>
+    <p>Roadmap 三阶段时间轴<strong>不得使用负 margin 做横向位移叠加</strong>——改用三列 Grid 并列或纵向独立三行。</p>
+    <div class="code-block"><span class="comment">/* ✅ 正确：三列 Grid 并列 */</span>
+.roadmap {
+  <span class="keyword">display</span>: grid;
+  <span class="keyword">grid-template-columns</span>: repeat(3, 1fr);
+  <span class="keyword">gap</span>: 32px;
+}
+
+<span class="comment">/* ❌ 禁止：负 margin 叠加 */</span>
+.gantt-row.s2 {
+  <span class="keyword">margin-top</span>: -170px;  <span class="comment">/* 这会造成遮挡！*/</span>
+}</div>
+  </div>
+
+  <div class="card">
+    <h3><span class="icon dark">🇨🇳</span>5 · 汉语言环境</h3>
+    <p>除品牌名、股票代码、必要专业缩写（IR / MVM / PGC / UGC 等）外，<strong>通篇中文</strong>。不出现大段英文。</p>
+  </div>
+
+  <div class="card">
+    <h3><span class="icon blue">⚡</span>6 · 丝滑交付</h3>
+    <ul>
+      <li>每个节点输出文件后<strong>立即 presentFile</strong>，不要问"要不要看"</li>
+      <li>任何节点不要问"下一步要做什么"——用 passive 菜单告知可选操作</li>
+      <li>全流程恰好 <strong>16 次 askUser</strong>（14 + 1 + 1），其他节点零阻断</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ==================== CHECKLIST ==================== -->
+<section id="checklist">
+  <h2>成功标准 Checklist</h2>
+  <p class="section-sub">每次交付前核对一遍</p>
+
+  <div class="card" style="padding: 24px 28px;">
+    <h3 style="margin-bottom: 16px;"><span class="icon blue">✅</span>流程 & 问询</h3>
+    <ul class="checklist">
+      <li>Step 1 使用 14 次独立 askUser，每次只问一个板块（严禁批量勾选大表单）</li>
+      <li>2 个必填字段（客户名 / 传播目标）完成，没有给"跳过"选项</li>
+      <li>手动补充的模块原样落入 Markdown，不再跑数</li>
+      <li>跳过的模块方案中彻底不出现（Markdown 和 PPT 都不生成对应页）</li>
+      <li>Step 2 askUser 只问一次"是否修改"</li>
+      <li>Step 3 askUser 只问一次"模板方向 A/B"</li>
+      <li>全流程：Step 1 × 14 + Step 2 × 1 + Step 3 × 1 = 16 次 askUser</li>
+    </ul>
+  </div>
+
+  <div class="card" style="padding: 24px 28px;">
+    <h3 style="margin-bottom: 16px;"><span class="icon gold">📝</span>内容质量</h3>
+    <ul class="checklist">
+      <li>每个启用模块都调用对应数据源（snow-pulse / 站内热度 / webSearch / competitor-analysis）</li>
+      <li>每页都有"主标题句（≤20字）+ 小标题句（≤40字）"</li>
+      <li>每个模块末尾有"📝销售补充"留白</li>
+      <li>全篇投资语言 / 雪球语言，无 PR 稿式空话</li>
+      <li>模块间有承上启下的叙事闭环</li>
+      <li>竞对分析覆盖"同市值 / 大市值 / 高成长"三类 × "MVM / IR / PR / 财报传播"四维</li>
+      <li>个股分析 ≥ 3 页（snow-pulse-standalone 主导）</li>
+      <li>雪球社区热度覆盖半年 · 包含搜索量 + 发帖量 + PGC/UGC 声音</li>
+      <li>传播主题：1 主 + 3-5 备选</li>
+      <li>Roadmap：三阶段 + 每阶段有重点内容</li>
+    </ul>
+  </div>
+
+  <div class="card" style="padding: 24px 28px;">
+    <h3 style="margin-bottom: 16px;"><span class="icon red">🎨</span>PPT 视觉</h3>
+    <ul class="checklist">
+      <li>全篇无绿色视觉（CSS 变量层面屏蔽）</li>
+      <li>所有 CSS 颜色通过反绿检测</li>
+      <li>@page 1920×1080 landscape 存在</li>
+      <li>每张 .slide 都有 page-break-after</li>
+      <li>每张 .content 都有 h1 + h2</li>
+      <li>封面有客户名 + 传播主题 + 日期</li>
+      <li>底部每页都有 "雪球商业 · 机密 · {date}"</li>
+      <li>涨跌颜色用红/灰，非绿</li>
+      <li>⭐ 零叠加：Roadmap 使用三列 Grid 并列，严禁 margin-top: -Npx</li>
+      <li>PPT 产出 1920×1080 HTML，自包含，可打印</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ==================== FAQ ==================== -->
+<section id="faq">
+  <h2>FAQ · 常见问题</h2>
+  <p class="section-sub">快速排障</p>
+
+  <div class="card">
+    <h3><span class="icon blue">❓</span>销售回复不明确怎么办？</h3>
+    <p>就地重问一次。仍不明确则<strong>非必填板块默认启用</strong>继续推进，不要卡流程。</p>
+  </div>
+
+  <div class="card">
+    <h3><span class="icon blue">❓</span>snow-pulse-standalone 技能不存在？</h3>
+    <p>降级方案：<code>snow-pulse</code>（已内置）+ <code>listing-radar</code> + <code>fmp</code> 数据组合替代。</p>
+  </div>
+
+  <div class="card">
+    <h3><span class="icon blue">❓</span>客户是 ADR / 港股分拆 / SPAC？</h3>
+    <p>需额外确认上市主体结构后再走流程。若为金融机构/基金产品，应转用 <code>xueqiu-biz-plan</code>。</p>
+  </div>
+
+  <div class="card">
+    <h3><span class="icon blue">❓</span>能否只出文字版不出 PPT？</h3>
+    <p>可以。Step 2 交付后，若销售不需要 PPT，直接使用 Markdown 文件即可。Step 3 非强制。</p>
+  </div>
+
+  <div class="card">
+    <h3><span class="icon blue">❓</span>如何修改已生成的方案？</h3>
+    <p>告诉 Agent 具体修改项（哪一页第几句），或直接在 Markdown 的 📝销售补充 处编辑后要求重新生成 PPT。</p>
+  </div>
+
+  <div class="card">
+    <h3><span class="icon blue">❓</span>支持英文版/简版/加长版吗？</h3>
+    <p>支持。交付完成后告诉 Agent：<br>
+    · 出英文版<br>
+    · 出简版（5 页）<br>
+    · 出超级路演版（30 页）</p>
+  </div>
+</section>
+
+<!-- ==================== INDUSTRY COLOR TABLE ==================== -->
+<section id="industry-colors">
+  <h2>附：行业色彩对照表</h2>
+  <p class="section-sub">主题 B 自动推导时的行业默认色表（全部通过反绿检测）</p>
+
+  <div class="data-table-wrap">
+    <table class="dtable">
+      <thead>
+        <tr><th>行业</th><th>主色</th><th>辅色</th><th>预览</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>银行 / 国企 / 央企</td>
+          <td><code>#C8272A</code> 中国红</td>
+          <td><code>#FFD166</code> 金</td>
+          <td>
+            <span style="display: inline-block; width: 24px; height: 24px; border-radius: 6px; background: #C8272A; vertical-align: middle;"></span>
+            <span style="display: inline-block; width: 24px; height: 24px; border-radius: 6px; background: #FFD166; vertical-align: middle; margin-left: 4px;"></span>
+          </td>
+        </tr>
+        <tr>
+          <td>证券 / 金融科技</td>
+          <td><code>#005BAC</code> 券商蓝</td>
+          <td><code>#FFC93C</code> 金</td>
+          <td>
+            <span style="display: inline-block; width: 24px; height: 24px; border-radius: 6px; background: #005BAC; vertical-align: middle;"></span>
+            <span style="display: inline-block; width: 24px; height: 24px; border-radius: 6px; background: #FFC93C; vertical-align: middle; margin-left: 4px;"></span>
+          </td>
+        </tr>
+        <tr>
+          <td>白酒 / 消费</td>
+          <td><code>#7A1F2B</code> 酒红</td>
+          <td><code>#E5B971</code> 琥珀</td>
+          <td>
+            <span style="display: inline-block; width: 24px; height: 24px; border-radius: 6px; background: #7A1F2B; vertical-align: middle;"></span>
+            <span style="display: inline-block; width: 24px; height: 24px; border-radius: 6px; background: #E5B971; vertical-align: middle; margin-left: 4px;"></span>
+          </td>
+        </tr>
+        <tr>
+          <td>医药 / 生物科技</td>
+          <td><code>#5A4FCF</code> 深紫</td>
+          <td><code>#FFA37A</code> 珊瑚</td>
+          <td>
+            <span style="display: inline-block; width: 24px; height: 24px; border-radius: 6px; background: #5A4FCF; vertical-align: middle;"></span>
+            <span style="display: inline-block; width: 24px; height: 24px; border-radius: 6px; background: #FFA37A; vertical-align: middle; margin-left: 4px;"></span>
+          </td>
+        </tr>
+        <tr>
+          <td>新能源 / 电池 / 光伏</td>
+          <td><code>#2E3A8C</code> 钴蓝</td>
+          <td><code>#FF7A3C</code> 橙</td>
+          <td>
+            <span style="display: inline-block; width: 24px; height: 24px; border-radius: 6px; background: #2E3A8C; vertical-align: middle;"></span>
+            <span style="display: inline-block; width: 24px; height: 24px; border-radius: 6px; background: #FF7A3C; vertical-align: middle; margin-left: 4px;"></span>
+          </td>
+        </tr>
+        <tr>
+          <td>互联网 / SaaS</td>
+          <td><code>#0B2540</code> 深海蓝</td>
+          <td><code>#5B8DEF</code> 天蓝</td>
+          <td>
+            <span style="display: inline-block; width: 24px; height: 24px; border-radius: 6px; background: #0B2540; vertical-align: middle;"></span>
+            <span style="display: inline-block; width: 24px; height: 24px; border-radius: 6px; background: #5B8DEF; vertical-align: middle; margin-left: 4px;"></span>
+          </td>
+        </tr>
+        <tr>
+          <td>汽车 / 高端制造</td>
+          <td><code>#1F1F1F</code> 哑黑</td>
+          <td><code>#C9A961</code> 香槟金</td>
+          <td>
+            <span style="display: inline-block; width: 24px; height: 24px; border-radius: 6px; background: #1F1F1F; vertical-align: middle;"></span>
+            <span style="display: inline-block; width: 24px; height: 24px; border-radius: 6px; background: #C9A961; vertical-align: middle; margin-left: 4px;"></span>
+          </td>
+        </tr>
+        <tr>
+          <td>半导体 / 硬科技</td>
+          <td><code>#10213A</code> 暗蓝</td>
+          <td><code>#00A8E8</code> 电光蓝</td>
+          <td>
+            <span style="display: inline-block; width: 24px; height: 24px; border-radius: 6px; background: #10213A; vertical-align: middle;"></span>
+            <span style="display: inline-block; width: 24px; height: 24px; border-radius: 6px; background: #00A8E8; vertical-align: middle; margin-left: 4px;"></span>
+          </td>
+        </tr>
+        <tr>
+          <td>新消费 / 互联网零售</td>
+          <td><code>#FF4E5C</code> 珊瑚红</td>
+          <td><code>#FFD166</code> 金</td>
+          <td>
+            <span style="display: inline-block; width: 24px; height: 24px; border-radius: 6px; background: #FF4E5C; vertical-align: middle;"></span>
+            <span style="display: inline-block; width: 24px; height: 24px; border-radius: 6px; background: #FFD166; vertical-align: middle; margin-left: 4px;"></span>
+          </td>
+        </tr>
+      </tbody>
     </table>
-    <table class="rpt" style="table-layout:fixed">
-      <colgroup><col style="width:44px"><col style="width:90px"><col style="width:90px"><col></colgroup>
-      <tr><th colspan="4" style="height:44px;vertical-align:middle">上市行业 周执行TOP5客户</th></tr>
-      <tr><th>排序</th><th>客户</th><th>执行金额（元）</th><th class="L">主要执行内容</th></tr>
-      <tr style="height:48px"><td>1</td><td>阿里巴巴</td><td>56,600</td><td class="L">日常传播</td></tr>
-      <tr style="height:48px"><td>2</td><td>岚图汽车</td><td>50,400</td><td class="L">财报传播、调研团</td></tr>
-      <tr style="height:48px"><td>3</td><td>珀莱雅</td><td>32,400</td><td class="L">日常传播</td></tr>
-      <tr style="height:48px"><td>4</td><td>顺丰同城</td><td>23,800</td><td class="L">财报传播</td></tr>
-      <tr style="height:48px"><td>5</td><td>贝壳</td><td>15,100</td><td class="L">财报传播</td></tr>
-    </table>
   </div>
-</div>
-
-<div class="card">
-  <div class="sec2" style="margin-top:0">③ 回款情况</div>
-  <ul class="pts"><li>截至4月17日，2026年累计回款 <span class="kw">1,150万元</span>，相较25年同期 <span class="dn">减少46%</span>。</li></ul>
-</div>
-
-<div class="card">
-  <div class="sec2" style="margin-top:0">④ 销售运营相关</div>
-  <ul class="pts" style="margin-bottom:14px">
-    <li>W16三区分行业销售拜访次数及执行净收情况：
-      <ul>
-        <li>金融：人均拜访 <span class="kw">4.2次</span>，人均净收 <span class="kw">17.51万</span>；<span class="kw">赵文婧、朱诗榆、王乾炜</span>本周执行净收低于行业平均水平</li>
-        <li>上市：人均拜访 <span class="kw">3.7次</span>，人均净收 <span class="kw">5.02万</span>；<span class="kw">李坤阳、丁晓霞、王敏、陈琳璐</span>本周执行净收低于行业平均水平</li>
-      </ul>
-    </li>
-    <li>本周新建联客户情况（CRM）：本周新增建联 <span class="kw">5家</span>——融捷（华南·上市·陈琳璐）、艾博生物（华东·上市·丁晓霞）、软通动力（华北·上市·李坤阳）、苏能股份（华东·上市·丁晓霞）、力劲（华南·上市·陈琳璐）</li>
-  </ul>
-  <div class="row2" style="margin-bottom:0">
-    <div>
-      <div class="ct">金融销售周执行&拜访</div>
-      <div class="leg"><span><span class="sq" style="background:#2E75B6"></span>执行净收（万）</span><span><span class="dot-leg" style="background:#E05040"></span>拜访量（次）</span></div>
-      <svg id="s1" width="100%" height="200" viewBox="0 0 440 200"></svg>
-    </div>
-    <div>
-      <div class="ct">上市销售周执行&拜访</div>
-      <div class="leg"><span><span class="sq" style="background:#2E75B6"></span>执行净收（万）</span><span><span class="dot-leg" style="background:#E05040"></span>拜访量（次）</span></div>
-      <svg id="s2" width="100%" height="200" viewBox="0 0 440 200"></svg>
-    </div>
-  </div>
-</div>
-
-<!-- 三、下周工作计划 -->
-<div class="sec">三、下周工作计划</div>
-<div class="sec2">1、客户拜访计划</div>
-<div class="card">
-  <table class="rpt">
-    <tr><th>区域</th><th>行业</th><th>销售</th><th>计划拜访数</th><th class="L">计划拜访客户名单</th></tr>
-    <tr style="background:#EBF3FB"><td rowspan="4" style="font-weight:700;background:#D6E8F7">华北<br>19访</td><td>金融</td><td>朱晓燕</td><td>5</td><td class="L">嘉实基金、邮储银行、工银瑞信、华商基金、东方基金</td></tr>
-    <tr style="background:#EBF3FB"><td>金融</td><td>王乾炜</td><td>4</td><td class="L">华夏基金（市场、互金）、中金基金、长盛基金</td></tr>
-    <tr style="background:#EBF3FB"><td>上市</td><td>宋一平</td><td>5</td><td class="L">伊利、百度、百济神州、艾美疫苗、京东</td></tr>
-    <tr style="background:#EBF3FB"><td>上市</td><td>李坤阳</td><td>5</td><td class="L">小马智行、地平线、理想汽车、纳斯达克、爱奇艺</td></tr>
-    <tr><td rowspan="5" style="font-weight:700;background:#F2F7FC">华东<br>23访</td><td>金融</td><td>李波</td><td>5</td><td class="L">华宝基金、富国基金、华泰柏瑞、西部利得基金、兴业银行</td></tr>
-    <tr><td>金融</td><td>杨帆</td><td>5</td><td class="L">汇添富基金、中银基金、易方达、永赢基金、摩根基金</td></tr>
-    <tr><td>金融</td><td>刘炫</td><td>3</td><td class="L">国泰基金、招商基金、华安基金</td></tr>
-    <tr><td>上市</td><td>王敏</td><td>5</td><td class="L">维昇药业、太美医疗、涂鸦、农夫山泉、协鑫能科</td></tr>
-    <tr><td>上市</td><td>丁晓霞</td><td>5</td><td class="L">博威合金、太平鸟、宁波银行、韵达股份、宁德时代</td></tr>
-    <tr style="background:#EBF5EE"><td rowspan="4" style="font-weight:700;background:#D6EDDF">华南<br>20访</td><td>金融</td><td>朱诗榆</td><td>5</td><td class="L">广发基金（券商、电商）、鹏华基金、平安基金、国金证券（代付）</td></tr>
-    <tr style="background:#EBF5EE"><td>金融</td><td>赵文婧</td><td>5</td><td class="L">南方基金（券商、品牌）、长城基金、大成基金、景顺长城基金</td></tr>
-    <tr style="background:#EBF5EE"><td>上市</td><td>周逸婷</td><td>5</td><td class="L">文远知行、健合集团、汤臣倍健、万益蓝、华润置地</td></tr>
-    <tr style="background:#EBF5EE"><td>上市</td><td>陈琳璐</td><td>5</td><td class="L">云天励飞、光峰、广联科技、欧菲光、瑞和数智</td></tr>
-  </table>
-</div>
-
-<div class="sec2">2、预估执行净收：135万</div>
-<div class="card">
-  <table class="rpt">
-    <tr><th>区域</th><th>行业</th><th>销售</th><th>预计执行净收</th><th class="L">预计执行明细</th></tr>
-    <tr><td rowspan="4" style="background:#EBF3FB;font-weight:700">华北<br>31.5万</td><td>金融</td><td>朱晓燕</td><td>¥200,000</td><td class="L">工银瑞信科创创业人工智能ETF产品持营，嘉实基金《港股通创新药ETF 财富刮刮卡》，南方基金重点场外产品持营</td></tr>
-    <tr><td>金融</td><td>王乾炜</td><td>¥45,000</td><td class="L">华夏基金持营</td></tr>
-    <tr><td>上市</td><td>李坤阳</td><td>¥40,000</td><td class="L">爱奇艺等日常资讯传播</td></tr>
-    <tr><td>上市</td><td>宋一平</td><td>¥30,000</td><td class="L">飞鹤资讯推送等</td></tr>
-    <tr><td rowspan="5" style="font-weight:700">华东<br>77万</td><td>金融</td><td>李波</td><td>¥120,000</td><td class="L">富国基金10万、华宝基金2万</td></tr>
-    <tr><td>金融</td><td>杨帆</td><td>¥150,000</td><td class="L">易方达15万</td></tr>
-    <tr><td>金融</td><td>刘炫</td><td>¥100,000</td><td class="L">国泰基金10万</td></tr>
-    <tr><td>上市</td><td>王敏</td><td>¥150,000</td><td class="L">涂鸦12万、农夫山泉3万</td></tr>
-    <tr><td>上市</td><td>丁晓霞</td><td>¥250,000</td><td class="L">山西汾酒15万、珀莱雅5万、希迪智驾5万</td></tr>
-    <tr><td rowspan="4" style="background:#EBF5EE;font-weight:700">华南<br>27万</td><td>金融</td><td>朱诗榆</td><td>¥42,000</td><td class="L">广发基金持营</td></tr>
-    <tr><td>金融</td><td>赵文婧</td><td>¥170,000</td><td class="L">南方基金新能源ETF持营</td></tr>
-    <tr><td>上市</td><td>周逸婷</td><td>¥15,000</td><td class="L">日常传播</td></tr>
-    <tr><td>上市</td><td>陈琳璐</td><td>¥50,000</td><td class="L">歌尔财报</td></tr>
-    <tr class="total"><td colspan="3">预估下周执行净收总计</td><td>¥1,352,000</td><td class="L"></td></tr>
-  </table>
-</div>
-
-<div class="sec2">3、预估签约流水：102万</div>
-<div class="card">
-  <table class="rpt">
-    <tr><th>区域</th><th>行业</th><th>销售</th><th>预计签约流水</th><th class="L">预计签约明细</th></tr>
-    <tr><td rowspan="4" style="background:#EBF3FB;font-weight:700">华北<br>45万</td><td>金融</td><td>朱晓燕</td><td>¥150,000</td><td class="L">北京银行品牌发布</td></tr>
-    <tr><td>金融</td><td>王乾炜</td><td>¥0</td><td class="L">暂无</td></tr>
-    <tr><td>上市</td><td>李坤阳</td><td>¥300,000</td><td class="L">润泽科技年框</td></tr>
-    <tr><td>上市</td><td>宋一平</td><td>¥0</td><td class="L">暂无</td></tr>
-    <tr><td rowspan="5" style="font-weight:700">华东<br>32万</td><td>金融</td><td>李波</td><td>¥0</td><td class="L">—</td></tr>
-    <tr><td>金融</td><td>杨帆</td><td>¥0</td><td class="L">—</td></tr>
-    <tr><td>金融</td><td>刘炫</td><td>¥0</td><td class="L">—</td></tr>
-    <tr><td>上市</td><td>王敏</td><td>¥120,000</td><td class="L">光明乳业12万</td></tr>
-    <tr><td>上市</td><td>丁晓霞</td><td>¥200,000</td><td class="L">鱼跃医疗20万</td></tr>
-    <tr><td rowspan="4" style="background:#EBF5EE;font-weight:700">华南<br>25万</td><td>金融</td><td>朱诗榆</td><td>¥150,000</td><td class="L">广发基金持营</td></tr>
-    <tr><td>金融</td><td>赵文婧</td><td>¥0</td><td class="L">暂无</td></tr>
-    <tr><td>上市</td><td>周逸婷</td><td>¥0</td><td class="L">暂无</td></tr>
-    <tr><td>上市</td><td>陈琳璐</td><td>¥100,000</td><td class="L">力劲</td></tr>
-    <tr class="total"><td colspan="3">预估下周签约流水总计</td><td>¥1,020,000</td><td class="L"></td></tr>
-  </table>
-</div>
+</section>
 
 </div>
-<script>
-function el(tag,attrs){const e=document.createElementNS('http://www.w3.org/2000/svg',tag);for(const[k,v]of Object.entries(attrs))e.setAttribute(k,v);return e}
-function tx(svg,x,y,s,o={}){const t=el('text',{x,y,'text-anchor':o.a||'middle','font-size':o.fs||10,'fill':o.c||'#5a6a8a','font-weight':o.b?'700':'400','font-family':'Microsoft YaHei,Arial,sans-serif'});t.textContent=s;svg.appendChild(t);return t}
 
-function barChart(id,labels,d26,d25,chgs,maxV,vw,vh){
-  const svg=document.getElementById(id);
-  const PL=8,PR=8,PT=52,PB=24,W=vw-PL-PR,H=vh-PT-PB;
-  const n=labels.length,gw=W/n,bw=gw*0.3,gap=gw*0.04;
-  [0,.25,.5,.75,1].forEach(f=>{const y=PT+H-f*H;svg.appendChild(el('line',{x1:PL,y1:y,x2:PL+W,y2:y,stroke:'#eaeff7','stroke-width':'0.6'}))});
-  labels.forEach((lbl,i)=>{
-    const gx=PL+i*gw+gw/2;
-    const h25=Math.max(d25[i]/maxV*H,1),y25=PT+H-h25;
-    svg.appendChild(el('rect',{x:gx-bw-gap/2,y:y25,width:bw,height:h25,fill:'#F07020',rx:'2'}));
-    tx(svg,gx-bw/2-gap/2,y25-4,d25[i]+'万',{fs:10,c:'#c05010'});
-    const h26=Math.max(d26[i]/maxV*H,1),y26=PT+H-h26;
-    svg.appendChild(el('rect',{x:gx+gap/2,y:y26,width:bw,height:h26,fill:'#2E75B6',rx:'2'}));
-    tx(svg,gx+bw/2+gap/2,y26-5,d26[i]+'万',{fs:10,c:'#2E75B6',b:true});
-    const chg=chgs[i],cc=chg>=0?'#D94F3D':'#1E8C45',ct=(chg>=0?'↑+':'↓')+Math.abs(chg).toFixed(1)+'%';
-    tx(svg,gx+bw/2+gap/2,Math.min(y26-18,PT-2),ct,{fs:9.5,c:cc,b:true});
-    tx(svg,gx,PT+H+16,lbl,{fs:10,c:'#5a6a8a'});
-  });
-}
+<!-- ==================== FOOTER ==================== -->
+<footer class="page-footer">
+  <div class="logo-text">Xueqiu · 雪球商业</div>
+  <p>上市公司 MVM / IR 传播方案 Skill 使用说明书 · v1.1 · 2026-04-23</p>
+  <p style="margin-top: 8px; opacity: 0.5;">Powered by Driven Agent</p>
+</footer>
 
-function pie(id,vals,cols,vw,vh){
-  const svg=document.getElementById(id);
-  const cx=vw/2,cy=vh/2,r=Math.min(vw,vh)/2-8,tot=vals.reduce((a,b)=>a+b,0);
-  let ang=-Math.PI/2;
-  vals.forEach((v,i)=>{
-    const sw=v/tot*2*Math.PI,x1=cx+r*Math.cos(ang),y1=cy+r*Math.sin(ang),x2=cx+r*Math.cos(ang+sw),y2=cy+r*Math.sin(ang+sw);
-    svg.appendChild(el('path',{d:`M${cx},${cy}L${x1},${y1}A${r},${r} 0 ${sw>Math.PI?1:0},1 ${x2},${y2}Z`,fill:cols[i],stroke:'#fff','stroke-width':'1.5'}));
-    const ma=ang+sw/2,lx=cx+r*0.62*Math.cos(ma),ly=cy+r*0.62*Math.sin(ma);
-    tx(svg,lx,ly+4,(v/tot*100).toFixed(1)+'%',{fs:11,c:'#fff',b:true});
-    ang+=sw;
-  });
-}
-
-function lineChart(id,data,col,labels,vw,vh){
-  const svg=document.getElementById(id);
-  const PL=8,PR=8,PT=22,PB=22,W=vw-PL-PR,H=vh-PT-PB;
-  const maxV=Math.max(...data)*1.18||10,n=data.length;
-  [0,.25,.5,.75,1].forEach(f=>{const y=PT+H-f*H;svg.appendChild(el('line',{x1:PL,y1:y,x2:PL+W,y2:y,stroke:'#eaeff7','stroke-width':'0.6'}))});
-  const pts=data.map((v,i)=>[PL+i*(W/(n-1)),PT+H-v/maxV*H]);
-  const fd=`M${pts[0][0]},${pts[0][1]}`+pts.slice(1).map(p=>`L${p[0]},${p[1]}`).join('')+`L${pts[n-1][0]},${PT+H}L${pts[0][0]},${PT+H}Z`;
-  svg.appendChild(el('path',{d:fd,fill:col+'22',stroke:'none'}));
-  svg.appendChild(el('path',{d:'M'+pts.map(p=>p[0]+','+p[1]).join('L'),fill:'none',stroke:col,'stroke-width':'2.2','stroke-linejoin':'round','stroke-linecap':'round'}));
-  pts.forEach(([x,y],i)=>{
-    svg.appendChild(el('circle',{cx:x,cy:y,r:'3.5',fill:col,stroke:'#fff','stroke-width':'1.5'}));
-    tx(svg,x,y-8,data[i]+'万',{fs:9.5,c:'#5a6a8a',b:true});
-    tx(svg,x,PT+H+15,labels[i],{fs:9.5,c:'#6a7a9a'});
-  });
-}
-
-function dual(id,labels,exec,visits,vw,vh){
-  const svg=document.getElementById(id);
-  const PL=8,PR=34,PT=24,PB=22,W=vw-PL-PR,H=vh-PT-PB;
-  const n=labels.length,bw=W/n*0.48,maxE=Math.max(...exec)*1.28||1,maxV=Math.max(...visits)+2;
-  [0,.25,.5,.75,1].forEach(f=>{const y=PT+H-f*H;svg.appendChild(el('line',{x1:PL,y1:y,x2:PL+W,y2:y,stroke:'#eaeff7','stroke-width':'0.6'}))});
-  labels.forEach((lbl,i)=>{
-    const cx=PL+(i+0.5)*(W/n),h=Math.max(exec[i]/maxE*H,1);
-    svg.appendChild(el('rect',{x:cx-bw/2,y:PT+H-h,width:bw,height:h,fill:'#2E75B6',rx:'3'}));
-    tx(svg,cx,PT+H-h-5,exec[i].toFixed(1)+'万',{fs:10,c:'#2E75B6',b:true});
-    tx(svg,cx,PT+H+15,lbl,{fs:10,c:'#5a6a8a'});
-  });
-  const vpts=labels.map((_,i)=>[PL+(i+0.5)*(W/n),PT+H-visits[i]/maxV*H]);
-  svg.appendChild(el('path',{d:'M'+vpts.map(p=>p[0]+','+p[1]).join('L'),fill:'none',stroke:'#E05040','stroke-width':'2.2','stroke-linejoin':'round'}));
-  vpts.forEach(([x,y],i)=>{
-    svg.appendChild(el('circle',{cx:x,cy:y,r:'4.5',fill:'#E05040',stroke:'#fff','stroke-width':'2'}));
-    tx(svg,x,y-8,visits[i]+'次',{fs:10,c:'#E05040',b:true});
-  });
-  tx(svg,vw-2,PT,'次',{a:'end',fs:9,c:'#E05040'});
-}
-
-const PIES=['#1F4E79','#2E75B6','#9DC3E6'];
-const WKS=['W1','W2','W3','W4','W5','W6','W7','W8','W9','W10','W11','W12','W13','W14','W15','W16'];
-
-barChart('b1',['商业化部','金融','上市'],[2353,1543,800],[2289,1562,716],[2.8,-1.2,11.8],2900,220,170);
-barChart('b2',['商业化部','金融','上市'],[2866,1578,1277],[4063,2611,1445],[-29.5,-39.6,-11.6],4500,220,170);
-barChart('b3',['华北·金融','华北·上市','华东·金融','华东·上市','华南·金融','华南·上市'],
-  [375,301,1051,128,118,371],[548,261,878,171,136,283],[-31.6,15.2,19.7,-25.2,-13.5,31.0],1300,460,170);
-barChart('b4',['华北·金融','华北·上市','华东·金融','华东·上市','华南·金融','华南·上市'],
-  [764,462,752,209,62,606],[910,651,1558,222,143,572],[-16.1,-29.1,-51.7,-5.7,-56.6,6.1],1800,460,170);
-
-pie('p1',[41.99,86.81,23.86],PIES,200,140);
-pie('p2',[6.0,52.0,10.0],PIES,200,140);
-
-lineChart('t1',[9,191,158,154,227,135,80,29,90,198,119,196,322,189,102,153],'#2E75B6',WKS,580,200);
-lineChart('t2',[0,230,304,103,602,53,66,45,75,254,337,154,234,245,78,69],'#E8813A',WKS,580,200);
-
-// 金融按执行从大到小：刘炫31.50/4 李波31.06/4 朱晓燕30.99/4 杨帆18.87/3 赵文婧6.11/5 朱诗榆4.04/5 王乾炜0/0
-dual('s1',['刘炫','李波','朱晓燕','杨帆','赵文婧','朱诗榆','王乾炜'],
-  [31.50,31.06,30.99,18.87,6.11,4.04,0],[4,4,4,3,5,5,0],440,200);
-// 上市按执行从大到小：宋一平10.36/5 周逸婷8.84/2 李坤阳4.88/3 丁晓霞3.73/5 王敏1.66/2 陈琳璐0.63/5
-dual('s2',['宋一平','周逸婷','李坤阳','丁晓霞','王敏','陈琳璐'],
-  [10.36,8.84,4.88,3.73,1.66,0.63],[5,2,3,5,2,5],440,200);
-</script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v8c78df7c7c0f484497ecbca7046644da1771523124516" integrity="sha512-8DS7rgIrAmghBFwoOTujcf6D9rXvH8xm8JQ1Ja01h9QX8EzXldiszufYa4IFfKdLUKTTrnSFXLDkUEOTrZQ8Qg==" data-cf-beacon='{"version":"2024.11.0","token":"7b3d4e98b7044c6b87fb096979d37e67","server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
 </body>
 </html>
